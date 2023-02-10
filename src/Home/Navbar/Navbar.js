@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import imgLogo from '../../Assets/download.jpg'
+import imgLogo from '../../Assets/BookLogo.jpg'
 
 const NavBar = () => {
 
@@ -25,8 +25,8 @@ const NavBar = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <img src={imgLogo} className='w-32 rounded-lg' alt="" />
-                <Link className=" normal-case text-5xl mx-2 font-bold" to='/'>USED CAR</Link>
+                <img src={imgLogo} className='w-32 rounded-full' alt="" />
+                <Link className=" normal-case text-5xl mx-2 font-bold" to='/'>Book <span className='text-yellow-500 ml-0'>Worm</span></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
