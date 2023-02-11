@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import imgLogo from '../../Assets/BookLogo.jpg'
+import { AuthContexts } from '../../Contexts/AuthContext';
 
 const NavBar = () => {
+
+    const { user } = useContext(AuthContexts)
 
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/bookings'>Booking</Link></li>
         <li><Link to='/about'>About</Link></li>
         <li><Link to='/contact'>Contact Us</Link></li>
+        <li><Link to='/register'>Register</Link></li>
         <li><Link to='/login'>Login</Link></li>
+        <li><Link to='/login'>LogOut</Link></li>
     </>
 
 
@@ -30,6 +35,7 @@ const NavBar = () => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
+
                     {menuItems}
                 </ul>
             </div>

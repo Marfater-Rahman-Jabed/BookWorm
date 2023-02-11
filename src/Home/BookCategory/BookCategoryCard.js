@@ -8,9 +8,9 @@ const BookCategoryCard = ({ category }) => {
     // console.log(category.name)
     return (
         <div>
-            <div className="card card-compact  bg-base-100 shadow-xl">
+            <div className="card card-compact bg-slate-300 shadow-xl">
                 <figure><img src={picture} alt="Shoes" className='w-full h-48' /></figure>
-                <div className="card-body">
+                <div className="card-body bg-slate-300 rounded-lg">
                     <h2 className="card-title text-3xl text-orange-600">{name}</h2>
                     <p>If a dog chews shoes whose shoes does he choose?</p>
                     <div className="card-actions justify-end">
