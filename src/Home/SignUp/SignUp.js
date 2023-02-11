@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import imgLogin from '../../Assets/AcadenicBook.jpg';
 import { AuthContexts } from '../../Contexts/AuthContext';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser } = useContext(AuthContexts);
+    const { createUser, updateUser } = useContext(AuthContexts);
     const onsubmit = data => {
         console.log(data)
 
@@ -13,15 +14,26 @@ const SignUp = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                const profile = {
+                    displayName: data.name
+                }
+                updateUser(profile)
+                    .then(result => {
+
+                    })
+                    .catch(error => console.log(error))
+
             })
             .catch(error => console.error(error))
+
+
     }
     return (
-        <div className="hero min-h-screen bg-base-200">
+        <div className="hero my-12 ">
             <div className="hero-content gap-0 flex-col lg:flex-row">
-                <div className="text-center lg:text-left  ">
+                <div className="text-center lg:text-left shadow-2xl bg-base-100 ">
 
-                    <img src={imgLogin} alt="" className='h-[500px] lg:w-[500px] rounded-l-lg' />
+                    <img src={imgLogin} alt="" className='h-[608px] lg:w-[500px] rounded-l-lg' />
                 </div>
                 <div className="card flex-shrink-0 w-full  lg:w-[500px] shadow-2xl bg-base-100 rounded-l-none ">
                     <form className="card-body" onSubmit={handleSubmit(onsubmit)}>
@@ -44,13 +56,18 @@ const SignUp = () => {
                             </label>
                             <input type="password" placeholder="password" className="input input-bordered" {...register('password')} />
                             <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                <p>Already Have an account? <Link to='/login' className='label-text-alt link link-hover'>Please Login</Link></p>
+
                             </label>
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Register</button>
                         </div>
                     </form>
+                    <div className="divider">OR</div>
+                    <div className="text-center mb-3">
+                        <button className="btn btn-outline w-1/2">Sign Up With Google</button>
+                    </div>
                 </div>
             </div>
         </div>

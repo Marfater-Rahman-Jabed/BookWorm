@@ -5,7 +5,16 @@ import { AuthContexts } from '../../Contexts/AuthContext';
 
 const NavBar = () => {
 
-    const { user } = useContext(AuthContexts)
+    const { user, LogOut } = useContext(AuthContexts);
+
+    const handleLogOut = () => {
+        LogOut()
+            .then(result => {
+                console.log('logOut successfull')
+            })
+            .catch(error => console.log(error))
+    }
+
 
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
@@ -13,8 +22,12 @@ const NavBar = () => {
         <li><Link to='/about'>About</Link></li>
         <li><Link to='/contact'>Contact Us</Link></li>
         <li><Link to='/register'>Register</Link></li>
-        <li><Link to='/login'>Login</Link></li>
-        <li><Link to='/login'>LogOut</Link></li>
+        {user?.email ?
+            <li><button onClick={handleLogOut}>LogOut</button></li>
+            :
+            <li><Link to='/login'>Login</Link></li>
+
+        }
     </>
 
 
