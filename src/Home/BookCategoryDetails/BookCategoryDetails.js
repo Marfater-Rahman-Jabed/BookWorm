@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import ConfirmationModal from '../ConfirmationModal/ConfirmationModal';
 import BookCategoryDeyails from './BookCategoryDeyailsCard';
 
 const BookCategoryDetails = () => {
     const books = useLoaderData();
-    const BookList = books[0].friends
+    const BookList = books[0].friends;
+    const [modalName, setModalName] = useState(null)
     // console.log(BookList)
     return (
         <div>
@@ -16,9 +18,17 @@ const BookCategoryDetails = () => {
                     BookList.map((book, i) => <BookCategoryDeyails
                         key={i}
                         book={book}
+                        setModalName={setModalName}
                     ></BookCategoryDeyails>)
                 }
             </div>
+            {
+                modalName && <ConfirmationModal
+                    modalName={modalName}
+                    setModalName={setModalName}
+
+                ></ConfirmationModal>
+            }
         </div>
     );
 };

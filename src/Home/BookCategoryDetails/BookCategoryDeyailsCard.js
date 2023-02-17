@@ -1,24 +1,41 @@
 import React from 'react';
+import ConfirmationModal from '../ConfirmationModal/ConfirmationModal';
 
-const BookCategoryDeyails = ({ book }) => {
-    console.log(book)
-    const { picture, name, price, rating, Author } = book
+const BookCategoryDeyails = ({ book, setModalName }) => {
+    // console.log(book)
+    const { picture, name, price, rating, Author, location, yearOfUses, postedTime, resalePrice, OrginalPrice } = book
+    // here original price is really resaleprice. it is my data update mistake
+    // console.log(BookList)
     return (
 
         <div className="card card-compact bg-slate-300 shadow-xl">
             <figure><img src={picture} alt="Shoes" className='w-full h-80' /></figure>
-            <div className="card-body bg-slate-300 rounded-md">
+            <div className="card-body bg-slate-300 rounded-md ">
                 <h2 className="card-title font-bold text-3xl">{name}</h2>
                 <div className='flex justify-between'>
-                    <div><p className='text-orange-500 font-semibold text-3xl'>Price: {price}</p></div>
-                    <div><p className='text-blue-500 font-semibold text-3xl'>Rating : {rating}</p></div>
+                    <div>
 
-                </div>
-                <p className='font-semibold '>Author : {Author}</p>
-                <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Buy Now</button>
+                        <p>Uses year: {yearOfUses} year</p>
+                        <p className='text-blue-500 font-semibold '>Original price: ${resalePrice}</p>
+                        <p className='text-orange-500 font-semibold '>Resale Price: ${OrginalPrice}</p>
+
+                    </div>
+                    <div>
+                        <span>
+                            <p className='font-semibold '>Author : {Author}</p>
+                            <>Location:{location}</>
+                        </span>
+                        <p>Posted time:{postedTime}</p>
+
+                    </div>
                 </div>
             </div>
+            <div className="card-actions justify-end mt-3 mb-0">
+                <label htmlFor="ConfirmModal" className="btn btn-primary w-full mb-0" onClick={() => setModalName(book)}>Book Now</label>
+
+            </div>
+
+
         </div>
 
     );

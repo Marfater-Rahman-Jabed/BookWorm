@@ -1,14 +1,25 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import imgLogin from '../../Assets/AcadenicBook.jpg';
 import { AuthContexts } from '../../Contexts/AuthContext';
+import useToken from '../../Hooks/useToken';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateUser } = useContext(AuthContexts);
+    const navigate = useNavigate();
+    const [userEmail, setUserEmail] = useState('')
+    const [token] = useToken(userEmail);
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
     const onsubmit = data => {
         console.log(data)
+
+        if (token) {
+            navigate(from, { replace: true });
+        }
 
         createUser(data.email, data.password)
             .then(result => {
@@ -19,14 +30,38 @@ const SignUp = () => {
                 }
                 updateUser(profile)
                     .then(result => {
-
+                        saveUser(data)
                     })
                     .catch(error => console.log(error))
+
+                toast.success('Register successfully');
+                navigate(from, { replace: true });
 
             })
             .catch(error => console.error(error))
 
 
+    }
+
+    const saveUser = (data) => {
+
+        const details = {
+            userName: data.name,
+            email: data.email
+        }
+
+        fetch(`http://localhost:5000/useradd`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(details)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setUserEmail(data.email)
+            })
     }
     return (
         <div className="hero my-12 ">
@@ -55,6 +90,13 @@ const SignUp = () => {
                                 <span className="label-text">Password</span>
                             </label>
                             <input type="password" placeholder="password" className="input input-bordered" {...register('password')} />
+
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Email</span>
+                            </label>
+                            <input type="email" placeholder="email" {...register('email')} className="input input-bordered" />
                             <label className="label">
                                 <p>Already Have an account? <Link to='/login' className='label-text-alt link link-hover'>Please Login</Link></p>
 

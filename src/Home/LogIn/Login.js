@@ -1,19 +1,35 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import imgLogin from '../../Assets/AcadenicBook.jpg';
 import { AuthContexts } from '../../Contexts/AuthContext';
+import useToken from '../../Hooks/useToken';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { LogIn } = useContext(AuthContexts);
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+    const navigate = useNavigate();
+    const [LoginEmail, setLoginEmail] = useState('');
+    const [token] = useToken(LoginEmail);
     const onsubmit = data => {
         // console.log(data)
+
+        if (token) {
+            navigate(from, { replace: true });
+        }
 
         LogIn(data.email, data.password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setLoginEmail(data.email);
+                toast.success('successfully Logged in');
+                navigate(from, { replace: true });
+
+
             })
             .catch(error => console.error(error))
     }

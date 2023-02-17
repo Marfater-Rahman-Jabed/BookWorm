@@ -20,7 +20,7 @@ const NavBar = () => {
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/bookings'>Booking</Link></li>
         <li><Link to='/about'>About</Link></li>
-        <li><Link to='/contact'>Contact Us</Link></li>
+        <li><Link to='/dashboard'>Dashboard</Link></li>
         <li><Link to='/register'>Register</Link></li>
         {user?.email ?
             <li><button onClick={handleLogOut}>LogOut</button></li>
@@ -35,16 +35,21 @@ const NavBar = () => {
     return (
         <div className="navbar  flex justify-between bg-sky-300">
             <div className="navbar-start">
-                <div className="dropdown">
+                <div className="dropdown ">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </label>
+
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         {menuItems}
                     </ul>
                 </div>
-                <img src={imgLogo} className='w-32 rounded-full' alt="" />
-                <Link className=" normal-case text-5xl mx-2 font-bold" to='/'>Book <span className='text-yellow-500 ml-0'>Worm</span></Link>
+
+
+                <img src={imgLogo} className='lg:w-24 md:w-22   sm:w-20  rounded-full   ' alt="" />
+
+                <Link className=" normal-case lg:text-5xl md:text-4xl  mx-2 font-bold" to='/'>Book <span className='text-yellow-500 ml-0'>Worm</span></Link>
+
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -52,7 +57,7 @@ const NavBar = () => {
                     {menuItems}
                 </ul>
             </div>
-
+            <label tabIndex={1} htmlFor="Dashbord-drawer" className="btn btn-ghost lg:hidden drawer-button "><svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg></label>
         </div>
     );
 };
