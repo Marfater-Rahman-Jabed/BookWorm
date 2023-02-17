@@ -47,7 +47,8 @@ const SignUp = () => {
 
         const details = {
             userName: data.name,
-            email: data.email
+            email: data.email,
+            role: data.role
         }
 
         fetch(`http://localhost:5000/useradd`, {
@@ -94,9 +95,14 @@ const SignUp = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Email</span>
+                                <span className="label-text">Select Your Identity</span>
                             </label>
-                            <input type="email" placeholder="email" {...register('email')} className="input input-bordered" />
+                            <select className="select w-full "  {...register('role')}>
+
+                                <option value='buyer'>Buyer</option>
+                                <option value='seller'>Seller</option>
+
+                            </select>
                             <label className="label">
                                 <p>Already Have an account? <Link to='/login' className='label-text-alt link link-hover'>Please Login</Link></p>
 
