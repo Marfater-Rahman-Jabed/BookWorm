@@ -2,10 +2,19 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import imgLogo from '../../Assets/BookLogo.jpg'
 import { AuthContexts } from '../../Contexts/AuthContext';
+import useAdmin from '../../Hooks/useAdmin';
+import useBuyer from '../../Hooks/useBuyer';
+import useSeller from '../../Hooks/useSeller';
 
 const NavBar = () => {
 
     const { user, LogOut } = useContext(AuthContexts);
+    // console.log(user)
+
+    const [buyer] = useBuyer(user?.email);
+    const [seller] = useSeller(user?.email);
+    const [admin] = useAdmin(user?.email);
+    // console.log(buyer)
 
     const handleLogOut = () => {
         LogOut()
@@ -18,7 +27,19 @@ const NavBar = () => {
 
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to='/bookings'>Booking</Link></li>
+        {buyer && <li><Link to='/bookings'>My Orders</Link></li>}
+
+        {seller && <>
+            <li><Link to='/addproducts'>Add Products</Link></li>
+            <li><Link to='/myproducts'>My Products</Link></li>
+
+        </>}
+        {admin &&
+            <>
+                <li><Link to='/dashboard/allseller'>All Seller</Link></li>
+                <li><Link to='/dashboard/allbuyer'>All Buyer</Link></li>
+            </>}
+
         <li><Link to='/about'>About</Link></li>
         <li><Link to='/dashboard'>Dashboard</Link></li>
         <li><Link to='/register'>Register</Link></li>
@@ -29,8 +50,6 @@ const NavBar = () => {
 
         }
     </>
-
-
 
     return (
         <div className="navbar  flex justify-between bg-sky-300">

@@ -35,6 +35,18 @@ const Alluser = () => {
             })
     }
 
+    const handleVerify = (id) => {
+        fetch(`http://localhost:5000/alluser/verify/${id}`, {
+            method: 'PUT'
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                refetch()
+
+            })
+    }
+
     return (
         <div>
             <div className="">
@@ -47,6 +59,7 @@ const Alluser = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th >Admin Panel</th>
+                            <th >Role</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -57,8 +70,17 @@ const Alluser = () => {
                                 <th>{i + 1}</th>
                                 <td>{user.userName}</td>
                                 <td>{user.email}</td>
+
                                 {user?.role !== 'admin' ? <td><button className='btn btn-sm btn-success' onClick={() => handleAdmin(user._id)}>Make Admin</button></td> : <td className='text-center text-success font-bold'>Admin</td>}
+
+                                {user?.role === 'admin' ? <td> </td>
+                                    : <td>{user?.role === 'seller' ? <td className='text-blue-500 font-bold' >{user?.verifyed === 'verifyed' ? 'Verifyed seller' : <button className='btn btn-sm btn-success' onClick={() => handleVerify(user._id)}>Make verifyed seller</button>} </td>
+                                        :
+                                        <td className='text-blue-500 font-bold'>Buyer</td>} </td>
+                                }
+
                                 {user?.role !== 'admin' ? <td><button className='btn btn-sm btn-error' onClick={() => handleDelete(user._id)}>Delete</button></td> : <td></td>}
+
                             </tr>)
                         }
 

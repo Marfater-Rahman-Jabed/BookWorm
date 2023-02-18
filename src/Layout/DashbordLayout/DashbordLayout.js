@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { AuthContexts } from '../../Contexts/AuthContext';
 import NavBar from '../../Home/Navbar/Navbar';
+import useAdmin from '../../Hooks/useAdmin';
+import useBuyer from '../../Hooks/useBuyer';
+import useSeller from '../../Hooks/useSeller';
 
 const DashbordLayout = () => {
+    const { user } = useContext(AuthContexts);
+    const [admin] = useAdmin(user?.email);
+    const [seller] = useSeller(user?.email);
+    const [buyer] = useBuyer(user?.email)
     return (
         <div>
             <NavBar></NavBar>
@@ -16,10 +24,21 @@ const DashbordLayout = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="Dashbord-drawer" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 bg-base-100 text-base-content">
+                    <ul className="menu p-4 w-56 bg-base-100 text-base-content">
 
-                        <li><Link to='/dashboard/mybooking'>My Booking</Link></li>
-                        <li><Link to='/dashboard/alluser'>All User</Link></li>
+                        {buyer && <li><Link to='/bookings'>My Orders</Link></li>}
+                        {admin &&
+                            <>
+                                <li><Link to='/dashboard/allseller'>All Seller</Link></li>
+                                <li><Link to='/dashboard/allbuyer'>All Buyer</Link></li>
+                                <li><Link to='/dashboard/alluser'>All User</Link></li>
+                            </>
+                        }
+                        {seller && <>
+                            <li><Link to='/addproducts'>Add Products</Link></li>
+                            <li><Link to='/myproducts'>My Products</Link></li>
+
+                        </>}
                     </ul>
 
                 </div>

@@ -39,7 +39,7 @@ export const router = createBrowserRouter([
         element: <DashbordLayout></DashbordLayout>,
         children: [
             {
-                path: '/dashboard/mybooking',
+                path: '/dashboard',
                 element: <Dashboard></Dashboard>
             },
             {
