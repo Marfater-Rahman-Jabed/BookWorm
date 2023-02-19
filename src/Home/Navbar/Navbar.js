@@ -27,11 +27,11 @@ const NavBar = () => {
 
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
-        {buyer && <li><Link to='/bookings'>My Orders</Link></li>}
+        {buyer && <li><Link to='/dashboard/bookings'>My Orders</Link></li>}
 
         {seller && <>
-            <li><Link to='/addproducts'>Add Products</Link></li>
-            <li><Link to='/myproducts'>My Products</Link></li>
+            <li><Link to='/dashboard/addproducts'>Add Products</Link></li>
+            <li><Link to='/dashboard/myproducts'>My Products</Link></li>
 
         </>}
         {admin &&

@@ -13,19 +13,19 @@ const BookCategoryDeyails = ({ book, setModalName }) => {
             <div className="card-body bg-slate-300 rounded-md ">
                 <h2 className="card-title font-bold text-3xl">{name}</h2>
                 <div className='flex justify-between'>
-                    <div>
+                    <div className='w-1/2'>
 
                         <p>Uses year: {yearOfUses} year</p>
                         <p className='text-blue-500 font-semibold '>Original price: ${resalePrice}</p>
                         <p className='text-orange-500 font-semibold '>Resale Price: ${OrginalPrice}</p>
 
                     </div>
-                    <div>
+                    <div className='w-1/2'>
                         <span>
                             <p className='font-semibold '>Author : {Author}</p>
                             <>Location:{location}</>
                         </span>
-                        <p>Posted time:{postedTime}</p>
+                        <p>Posted time: {postedTime?.slice(0, 10)}</p>
 
                     </div>
                 </div>
