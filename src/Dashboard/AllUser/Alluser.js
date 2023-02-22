@@ -72,15 +72,15 @@ const Alluser = () => {
                                 <td>{user.userName}</td>
                                 <td>{user.email}</td>
 
-                                {user?.role !== 'admin' ? <td><button className='btn btn-sm btn-success' onClick={() => handleAdmin(user._id)}>Make Admin</button></td> : <td className='text-center text-success font-bold'>Admin</td>}
+                                {user?.role !== 'admin' ? <td><button className='btn btn-sm btn-success text-xs' onClick={() => handleAdmin(user._id)}>Make Admin</button></td> : <td className='text-center text-success font-bold'>Admin</td>}
 
                                 {user?.role === 'admin' ? <td> </td>
-                                    : <td>{user?.role === 'seller' ? <td className='text-blue-500 font-bold' >{user?.verifyed === 'verifyed' ? <TiTick className='text-3xl'></TiTick> : <button className='btn btn-sm btn-success' onClick={() => handleVerify(user._id)}>Make verifyed seller</button>} </td>
+                                    : <td>{user?.role === 'seller' ? <td className='text-blue-500 font-bold' >{user?.verifyed === 'verifyed' ? <TiTick className='text-3xl'></TiTick> : <button className='btn btn-sm btn-success text-xs' onClick={() => handleVerify(user._id)}>Make verifyed seller</button>} </td>
                                         :
                                         <td className='text-blue-500 font-bold'>Buyer</td>} </td>
                                 }
 
-                                {user?.role !== 'admin' ? <td><button className='btn btn-sm btn-error' onClick={() => handleDelete(user._id)}>Delete</button></td> : <td></td>}
+                                {user?.role !== 'admin' ? <td><button className='btn btn-sm btn-error text-xs' onClick={() => handleDelete(user._id)}>Delete</button></td> : <td></td>}
 
                             </tr>)
                         }

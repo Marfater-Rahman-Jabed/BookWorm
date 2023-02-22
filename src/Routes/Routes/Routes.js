@@ -12,6 +12,7 @@ import SignUp from "../../Home/SignUp/SignUp";
 import DashbordLayout from "../../Layout/DashbordLayout/DashbordLayout";
 import Main from "../../Layout/Main";
 import NotFound404 from "../../NotFound404/NotFound404";
+import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 
 export const router = createBrowserRouter([
@@ -41,7 +42,7 @@ export const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <DashbordLayout></DashbordLayout>,
+        element: <PrivateRoutes><DashbordLayout></DashbordLayout></PrivateRoutes>,
         children: [
             {
                 path: '/dashboard',
@@ -49,15 +50,15 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/alluser',
-                element: <Alluser></Alluser>
+                element: <AdminRoute><Alluser></Alluser></AdminRoute>
             },
             {
                 path: '/dashboard/allseller',
-                element: <Allseller></Allseller>
+                element: <AdminRoute><Allseller></Allseller></AdminRoute>
             },
             {
                 path: '/dashboard/allbuyer',
-                element: <AllBuyer></AllBuyer>
+                element: <AdminRoute><AllBuyer></AllBuyer></AdminRoute>
             },
             {
                 path: '/dashboard/addproducts',

@@ -26,7 +26,7 @@ const DashbordLayout = () => {
                     <label htmlFor="Dashbord-drawer" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-56 bg-base-100 text-base-content">
 
-                        {buyer && <li><Link to='/dashboard/bookings'>My Orders</Link></li>}
+                        {<li><Link to='/dashboard'>My Orders</Link></li>}
                         {admin &&
                             <>
                                 <li><Link to='/dashboard/allseller'>All Seller</Link></li>
@@ -34,7 +34,7 @@ const DashbordLayout = () => {
                                 <li><Link to='/dashboard/alluser'>All User</Link></li>
                             </>
                         }
-                        {seller && <>
+                        {(seller || admin) && <>
                             <li><Link to='/dashboard/addproducts'>Add Products</Link></li>
                             <li><Link to='/dashboard/myproducts'>My Products</Link></li>
 

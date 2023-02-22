@@ -3,7 +3,7 @@ import { toast } from 'react-hot-toast';
 import { AuthContexts } from '../../Contexts/AuthContext';
 
 const ConfirmationModal = ({ modalName, setModalName }) => {
-    const { name, OrginalPrice } = modalName;
+    const { name: BookName, OrginalPrice, picture } = modalName;
     const { user } = useContext(AuthContexts);
 
 
@@ -20,7 +20,7 @@ const ConfirmationModal = ({ modalName, setModalName }) => {
         // toast.success('successfully booked')
 
         const booking = {
-            name, email, price, phone, location
+            name, email, price, phone, location, BookName, picture
         }
 
 
@@ -47,7 +47,7 @@ const ConfirmationModal = ({ modalName, setModalName }) => {
             <div className="modal">
                 <div className="modal-box relative">
                     <label htmlFor="ConfirmModal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <h3 className="text-lg font-boldname ">Hellow !!! <br /> You want to buy <span className='text-orange-500 font-semibold'>"{name}" </span> book</h3>
+                    <h3 className="text-lg font-boldname ">Hellow !!! <br /> You want to buy <span className='text-orange-500 font-semibold'>"{BookName}" </span> book</h3>
                     <form onSubmit={handleSubmit}>
                         <label className="label">
                             <span className="label-text">Name</span>

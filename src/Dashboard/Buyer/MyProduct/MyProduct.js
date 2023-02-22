@@ -14,6 +14,33 @@ const MyProduct = () => {
 
         }
     })
+
+    const handleAdvertise = (id, product) => {
+        console.log(product)
+        const productDetail = {
+            productId: product._id,
+            picture: product.picture,
+            price: product.OrginalPrice,
+            name: product.name,
+            email: product.email,
+            location: product.location,
+            yearOfUses: product.yearOfUses,
+        }
+
+        fetch(`http://localhost:5000/advertise`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(productDetail)
+
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result)
+            })
+
+    }
     return (
         <div>
             <div className="overflow-x-auto">
@@ -26,6 +53,8 @@ const MyProduct = () => {
                             <th>Book Name</th>
                             <th>Price</th>
                             <th>Posted Time</th>
+                            <th>Make Advertise</th>
+
 
                         </tr>
                     </thead>
@@ -37,7 +66,8 @@ const MyProduct = () => {
                                 <td><img src={product.picture} alt="" className='w-12 h-12' /></td>
                                 <td>{product.name}</td>
                                 <td>{product.OrginalPrice}</td>
-                                <td>{product.postedTime}</td>
+                                <td>{product.postedTime.slice(0, 10)}</td>
+                                <td><button className='btn btn-success btn-sm' onClick={() => handleAdvertise(product._id, product)}>Advertise</button></td>
                             </tr>)
                         }
                     </tbody>
