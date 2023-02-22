@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ConfirmationModal from '../ConfirmationModal/ConfirmationModal';
+
+import { AuthContexts } from '../../Contexts/AuthContext';
+import { TiTick } from 'react-icons/ti';
+import useVerifyed from '../../Hooks/useVerifyed';
 
 const BookCategoryDeyails = ({ book, setModalName }) => {
     // console.log(book)
-    const { picture, name, price, rating, Author, location, yearOfUses, postedTime, resalePrice, OrginalPrice } = book
+    const { user } = useContext(AuthContexts)
+    const { picture, name, price, rating, Author, location, yearOfUses, postedTime, resalePrice, OrginalPrice } = book;
+    const [verifyed] = useVerifyed(user?.email)
+    // console.log(verifyed)
     // here original price is really resaleprice. it is my data update mistake
     // console.log(BookList)
     return (
@@ -22,7 +29,7 @@ const BookCategoryDeyails = ({ book, setModalName }) => {
                     </div>
                     <div className='w-1/2'>
                         <span>
-                            <p className='font-semibold '>Author : {Author}</p>
+                            <p className='font-semibold flex'>Author :{Author}</p>
                             <>Location:{location}</>
                         </span>
                         <p>Posted time: {postedTime?.slice(0, 10)}</p>

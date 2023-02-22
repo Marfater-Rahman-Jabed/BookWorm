@@ -1,6 +1,7 @@
 import { async } from '@firebase/util';
 import React from 'react';
 import { useQuery } from 'react-query';
+import { TiTick } from 'react-icons/ti';
 
 const Alluser = () => {
 
@@ -74,7 +75,7 @@ const Alluser = () => {
                                 {user?.role !== 'admin' ? <td><button className='btn btn-sm btn-success' onClick={() => handleAdmin(user._id)}>Make Admin</button></td> : <td className='text-center text-success font-bold'>Admin</td>}
 
                                 {user?.role === 'admin' ? <td> </td>
-                                    : <td>{user?.role === 'seller' ? <td className='text-blue-500 font-bold' >{user?.verifyed === 'verifyed' ? 'Verifyed seller' : <button className='btn btn-sm btn-success' onClick={() => handleVerify(user._id)}>Make verifyed seller</button>} </td>
+                                    : <td>{user?.role === 'seller' ? <td className='text-blue-500 font-bold' >{user?.verifyed === 'verifyed' ? <TiTick className='text-3xl'></TiTick> : <button className='btn btn-sm btn-success' onClick={() => handleVerify(user._id)}>Make verifyed seller</button>} </td>
                                         :
                                         <td className='text-blue-500 font-bold'>Buyer</td>} </td>
                                 }

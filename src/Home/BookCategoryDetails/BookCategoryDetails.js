@@ -5,7 +5,7 @@ import BookCategoryDeyails from './BookCategoryDeyailsCard';
 
 const BookCategoryDetails = () => {
     const books = useLoaderData();
-    const BookList = books[0].friends;
+    const BookList = books[0]?.friends;
     const [modalName, setModalName] = useState(null)
     // console.log(BookList)
     return (

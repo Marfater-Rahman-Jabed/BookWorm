@@ -2,16 +2,30 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { TiTick } from 'react-icons/ti';
 
-const Allseller = () => {
 
-    const { data: AllSeller = [], refetch } = useQuery({
-        queryKey: ['seller'],
+const AllBuyer = () => {
+    const { data: AllBuyer = [], refetch } = useQuery({
+        queryKey: ['buyer'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/allseller`)
+            const res = await fetch(`http://localhost:5000/allBuyer`)
             const data = res.json();
             return data;
         }
     })
+
+    const handleDelete = (id) => {
+
+        // console.log('delete')
+        fetch(`http://localhost:5000/alluser/${id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                refetch()
+            })
+
+    }
     return (
         <div>
             <div className="overflow-x-auto">
@@ -22,17 +36,18 @@ const Allseller = () => {
                             <th>Sl No</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Verify</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
 
                         {
-                            AllSeller.map((seller, i) => <tr className="hover" key={i}>
+                            AllBuyer.map((seller, i) => <tr className="hover" key={i}>
                                 <th>{i + 1}</th>
                                 <td>{seller.userName}</td>
                                 <td>{seller.email}</td>
-                                <td>{seller?.verifyed ? <TiTick className='text-3xl text-blue-500'></TiTick> : <p className='text-error font-semibold'>Not verifyed</p>}</td>
+                                <td><button className='btn btn-error' onClick={() => handleDelete(seller._id)}>Delete</button></td>
+
                             </tr>)
                         }
 
@@ -44,4 +59,4 @@ const Allseller = () => {
     );
 };
 
-export default Allseller;
+export default AllBuyer;
