@@ -11,6 +11,7 @@ import Login from "../../Home/LogIn/Login";
 import SignUp from "../../Home/SignUp/SignUp";
 import DashbordLayout from "../../Layout/DashbordLayout/DashbordLayout";
 import Main from "../../Layout/Main";
+import NotFound404 from "../../NotFound404/NotFound404";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 
 export const router = createBrowserRouter([
@@ -67,5 +68,8 @@ export const router = createBrowserRouter([
                 element: <MyProduct></MyProduct>
             },
         ]
+    }, {
+        path: '*',
+        element: <NotFound404></NotFound404>
     }
 ])
