@@ -9,6 +9,7 @@ import useAdmin from '../../Hooks/useAdmin';
 import useBuyer from '../../Hooks/useBuyer';
 import useSeller from '../../Hooks/useSeller';
 import useToken from '../../Hooks/useToken';
+import Loading from '../../Loading/Loading';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -20,33 +21,32 @@ const Login = () => {
     const [token] = useToken(LoginEmail);
 
 
-    const [Admin] = useAdmin(user?.email);
-    const [seller] = useSeller(user?.email);
-    const [buyer] = useBuyer(user?.email);
+    const [Admin, adminLoading] = useAdmin(user?.email);
+    const [seller, sellerLoading] = useSeller(user?.email);
+    const [buyer, buyerLoading] = useBuyer(user?.email);
     const onsubmit = data => {
         // console.log(data)
 
         if (token) {
             navigate(from, { replace: true });
         }
-
-        if (Admin || seller || buyer) {
-            LogIn(data.email, data.password)
-                .then(result => {
-                    const user = result.user;
-                    console.log(user);
-                    setLoginEmail(data.email);
-                    toast.success('successfully Logged in');
-                    navigate(from, { replace: true });
-
-
-                })
-                .catch(error => console.error(error))
+        if (adminLoading || sellerLoading || buyerLoading) {
+            <Loading></Loading>
         }
-        else {
-            toast.error('Sorry you have not an account');
-            navigate('/register')
-        }
+
+        LogIn(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                setLoginEmail(data.email);
+                toast.success('successfully Logged in');
+                navigate(from, { replace: true });
+
+
+            })
+            .catch(error => console.error(error))
+
+
 
 
     }
@@ -55,7 +55,8 @@ const Login = () => {
         googleLogIn()
             .then(result => {
                 const user = result.user;
-                toast.success('successfully Login')
+                toast.success('successfully Login');
+                setLoginEmail(user?.email)
                 navigate(from, { replace: true });
                 console.log(user)
             })

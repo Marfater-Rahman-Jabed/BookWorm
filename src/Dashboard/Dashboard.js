@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { useQuery } from 'react-query';
+import { Link } from 'react-router-dom';
 import { AuthContexts } from '../Contexts/AuthContext';
 
 const Dashboard = () => {
@@ -35,8 +36,8 @@ const Dashboard = () => {
                                 <th>{i + 1}</th>
                                 <td><img src={order.picture} alt="" className='w-12 h-12' /></td>
                                 <td>{order.BookName}</td>
-                                <td>{order.price}</td>
-                                <td><button className='btn btn-success btn-sm'>Pay</button></td>
+                                <td> $ {order.price}</td>
+                                <td><Link to={`/dashboard/payment/${order._id}`} className='btn btn-error success btn-sm' >Make Pay</Link></td>
 
 
                             </tr>)
