@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useQuery } from 'react-query';
+import { AuthContexts } from '../../Contexts/AuthContext';
+import useAdmin from '../../Hooks/useAdmin';
 
 const Advertise = () => {
 
@@ -10,7 +12,9 @@ const Advertise = () => {
             const data = res.json();
             return data;
         }
-    })
+    });
+    const { user } = useContext(AuthContexts);
+    const [Admin] = useAdmin(user?.email);
 
     return (
         <div className='mb-5 bg-slate-500 rounded-b-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12'>
@@ -23,8 +27,9 @@ const Advertise = () => {
                             <p className='font-semibold text-white'>Price: $ {add.price}</p>
                             <p className='font-semibold text-white'>Year of Uses : {add.yearOfUses} year</p>
                         </div>
-                        <div className="card-actions justify-end ">
+                        <div className="card-actions justify-between ">
                             <button className="btn btn-primary ">Buy Now</button>
+                            {Admin && <button className="btn btn-primary ">Delete</button>}
                         </div>
                     </div>
                 </div>)

@@ -1,3 +1,4 @@
+import { success } from 'daisyui/src/colors';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
@@ -8,7 +9,7 @@ import useToken from '../../Hooks/useToken';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser, updateUser } = useContext(AuthContexts);
+    const { createUser, updateUser, googleLogIn } = useContext(AuthContexts);
     const navigate = useNavigate();
     const [userEmail, setUserEmail] = useState('')
     const [token] = useToken(userEmail);
@@ -64,6 +65,19 @@ const SignUp = () => {
                 setUserEmail(data.email)
             })
     }
+    const handleGoogle = (provider) => {
+        googleLogIn(provider)
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+                toast.success('Register successfully')
+                navigate(from, { replace: true });
+            })
+            .catch(error => {
+                console.log(error)
+            })
+
+    }
     return (
         <div className="hero my-12 ">
             <div className="hero-content gap-0 flex-col lg:flex-row">
@@ -114,7 +128,7 @@ const SignUp = () => {
                     </form>
                     <div className="divider">OR</div>
                     <div className="text-center mb-3">
-                        <button className="btn btn-outline w-1/2">Sign Up With Google</button>
+                        <button className="btn btn-outline w-1/2" onClick={handleGoogle}>Sign Up With Google</button>
                     </div>
                 </div>
             </div>

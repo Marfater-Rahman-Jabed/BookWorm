@@ -1,19 +1,28 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import imgLogin from '../../Assets/AcadenicBook.jpg';
 import { AuthContexts } from '../../Contexts/AuthContext';
+import useAdmin from '../../Hooks/useAdmin';
+import useBuyer from '../../Hooks/useBuyer';
+import useSeller from '../../Hooks/useSeller';
 import useToken from '../../Hooks/useToken';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { LogIn } = useContext(AuthContexts);
+    const { LogIn, user, googleLogIn } = useContext(AuthContexts);
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
     const navigate = useNavigate();
     const [LoginEmail, setLoginEmail] = useState('');
     const [token] = useToken(LoginEmail);
+
+
+    const [Admin] = useAdmin(user?.email);
+    const [seller] = useSeller(user?.email);
+    const [buyer] = useBuyer(user?.email);
     const onsubmit = data => {
         // console.log(data)
 
@@ -21,17 +30,39 @@ const Login = () => {
             navigate(from, { replace: true });
         }
 
-        LogIn(data.email, data.password)
+        if (Admin || seller || buyer) {
+            LogIn(data.email, data.password)
+                .then(result => {
+                    const user = result.user;
+                    console.log(user);
+                    setLoginEmail(data.email);
+                    toast.success('successfully Logged in');
+                    navigate(from, { replace: true });
+
+
+                })
+                .catch(error => console.error(error))
+        }
+        else {
+            toast.error('Sorry you have not an account');
+            navigate('/register')
+        }
+
+
+    }
+
+    const handleGoogle = () => {
+        googleLogIn()
             .then(result => {
                 const user = result.user;
-                console.log(user);
-                setLoginEmail(data.email);
-                toast.success('successfully Logged in');
+                toast.success('successfully Login')
                 navigate(from, { replace: true });
-
-
+                console.log(user)
             })
-            .catch(error => console.error(error))
+            .catch(error => {
+                console.log(error)
+            })
+
     }
 
     return (
@@ -67,7 +98,7 @@ const Login = () => {
                     </form>
                     <div className="divider">OR</div>
                     <div className="text-center mb-3">
-                        <button className="btn btn-outline w-1/2">Sign In With Google</button>
+                        <button className="btn btn-outline w-1/2" onClick={handleGoogle}>Sign In With Google</button>
                     </div>
                 </div>
             </div>

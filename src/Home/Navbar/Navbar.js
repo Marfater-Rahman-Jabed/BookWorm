@@ -13,7 +13,7 @@ const NavBar = () => {
 
     const [buyer] = useBuyer(user?.email);
     const [seller] = useSeller(user?.email);
-    const [admin] = useAdmin(user?.email);
+    const [Admin] = useAdmin(user?.email);
     // console.log(buyer)
 
     const handleLogOut = () => {
@@ -34,7 +34,7 @@ const NavBar = () => {
             <li><Link to='/dashboard/myproducts'>My Products</Link></li>
 
         </>}
-        {admin &&
+        {Admin &&
             <>
                 <li><Link to='/dashboard/allseller'>All Seller</Link></li>
                 <li><Link to='/dashboard/allbuyer'>All Buyer</Link></li>

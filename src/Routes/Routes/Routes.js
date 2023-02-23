@@ -14,6 +14,7 @@ import Main from "../../Layout/Main";
 import NotFound404 from "../../NotFound404/NotFound404";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
+import SellerAdminRoute from "../SellerAdminRoute/SellerAdminRoute";
 
 export const router = createBrowserRouter([
     {
@@ -62,11 +63,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/addproducts',
-                element: <AddProduct></AddProduct>
+                element: <SellerAdminRoute><AddProduct></AddProduct></SellerAdminRoute>
             },
             {
                 path: '/dashboard/myproducts',
-                element: <MyProduct></MyProduct>
+                element: <SellerAdminRoute><MyProduct></MyProduct></SellerAdminRoute>
             },
         ]
     }, {
