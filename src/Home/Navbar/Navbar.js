@@ -40,7 +40,7 @@ const NavBar = () => {
                 <li><Link to='/dashboard/allbuyer'>All Buyer</Link></li>
             </>}
 
-        <li><Link to='/about'>About</Link></li>
+        <li><Link to='/blog'>Blog</Link></li>
         <li><Link to='/dashboard'>Dashboard</Link></li>
         <li><Link to='/register'>Register</Link></li>
         {user?.email ?
