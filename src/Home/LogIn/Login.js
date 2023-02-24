@@ -30,9 +30,7 @@ const Login = () => {
         if (token) {
             navigate(from, { replace: true });
         }
-        if (adminLoading || sellerLoading || buyerLoading) {
-            <Loading></Loading>
-        }
+
 
         LogIn(data.email, data.password)
             .then(result => {
@@ -47,24 +45,30 @@ const Login = () => {
             .catch(error => console.error(error))
 
 
+        // else {
+        //     toast.error('Sorry You have not an account Please Register First')
+        //     navigate('/register')
+        // }
+
+
 
 
     }
 
-    const handleGoogle = () => {
-        googleLogIn()
-            .then(result => {
-                const user = result.user;
-                toast.success('successfully Login');
-                setLoginEmail(user?.email)
-                navigate(from, { replace: true });
-                console.log(user)
-            })
-            .catch(error => {
-                console.log(error)
-            })
+    // const handleGoogle = () => {
+    //     googleLogIn()
+    //         .then(result => {
+    //             const user = result.user;
+    //             toast.success('successfully Login');
+    //             setLoginEmail(user?.email)
+    //             navigate(from, { replace: true });
+    //             console.log(user)
+    //         })
+    //         .catch(error => {
+    //             console.log(error)
+    //         })
 
-    }
+    // }
 
     return (
         <div className="hero my-12">
@@ -99,7 +103,7 @@ const Login = () => {
                     </form>
                     <div className="divider">OR</div>
                     <div className="text-center mb-3">
-                        <button className="btn btn-outline w-1/2" onClick={handleGoogle}>Sign In With Google</button>
+                        <button className="btn btn-outline w-1/2" >Sign In With Google</button>
                     </div>
                 </div>
             </div>

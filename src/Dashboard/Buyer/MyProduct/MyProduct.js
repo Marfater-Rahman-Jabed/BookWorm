@@ -20,7 +20,7 @@ const MyProduct = () => {
         const productDetail = {
             productId: product._id,
             picture: product.picture,
-            price: product.OrginalPrice,
+            OrginalPrice: product.OrginalPrice,
             name: product.name,
             email: product.email,
             location: product.location,

@@ -52,7 +52,7 @@ const ConfirmationModal = ({ modalName, setModalName }) => {
                         <label className="label">
                             <span className="label-text">Name</span>
                         </label>
-                        <input name='name' type="text" placeholder='name' readOnly defaultValue={user.displayName} className="input input-bordered  w-full bg-slate-300 text-orange-500 font-semibold" />
+                        <input name='name' type="text" placeholder='name' readOnly defaultValue={user?.displayName} className="input input-bordered  w-full bg-slate-300 text-orange-500 font-semibold" />
                         <label className="label">
                             <span className="label-text">Email</span>
                         </label>

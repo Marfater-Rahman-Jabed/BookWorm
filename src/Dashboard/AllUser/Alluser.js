@@ -1,9 +1,11 @@
 import { async } from '@firebase/util';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useQuery } from 'react-query';
 import { TiTick } from 'react-icons/ti';
+import { AuthContexts } from '../../Contexts/AuthContext';
 
 const Alluser = () => {
+    const { deleteUsers } = useContext(AuthContexts)
 
     const { data: Alluser = [], refetch } = useQuery({
         queryKey: ['user'],
@@ -25,7 +27,7 @@ const Alluser = () => {
 
             })
     }
-    const handleDelete = (id) => {
+    const handleDelete = (id, email) => {
         fetch(`http://localhost:5000/alluser/${id}`, {
             method: 'DELETE'
         })
@@ -34,6 +36,15 @@ const Alluser = () => {
                 console.log(data);
                 refetch()
             })
+
+
+        // deleteUsers(email)
+        //     .then(() => {
+
+        //     })
+        //     .catch((error) => {
+        //         console.log(error)
+        //     })
     }
 
     const handleVerify = (id) => {
@@ -80,7 +91,7 @@ const Alluser = () => {
                                         <td className='text-blue-500 font-bold'>Buyer</td>} </td>
                                 }
 
-                                {user?.role !== 'admin' ? <td><button className='btn btn-sm btn-error text-xs' onClick={() => handleDelete(user._id)}>Delete</button></td> : <td></td>}
+                                {user?.role !== 'admin' ? <td><button className='btn btn-sm btn-error text-xs' onClick={() => handleDelete(user._id, user.email)}>Delete</button></td> : <td></td>}
 
                             </tr>)
                         }

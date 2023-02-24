@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useQuery } from 'react-query';
 import { AuthContexts } from '../../Contexts/AuthContext';
 import useAdmin from '../../Hooks/useAdmin';
+import ConfirmationModal from '../ConfirmationModal/ConfirmationModal';
 
 const Advertise = () => {
+    const [modalName, setModalName] = useState(null)
 
-    const { data: Advertise = [] } = useQuery({
+    const { data: Advertise = [], refetch } = useQuery({
         queryKey: ['advertise'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/advertise`);
@@ -15,6 +17,20 @@ const Advertise = () => {
     });
     const { user } = useContext(AuthContexts);
     const [Admin] = useAdmin(user?.email);
+    const handleDelete = (id) => {
+        console.log(id)
+        fetch(`http://localhost:5000/advertise/${id}`, {
+            method: 'DELETE'
+        })
+            .then(result => {
+                refetch()
+            })
+            .then(error => {
+                // console.log(error)
+            })
+
+
+    }
 
     return (
         <div className='mb-5 bg-slate-500 rounded-b-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12'>
@@ -24,16 +40,25 @@ const Advertise = () => {
                     <div className="card-body bg-orange-500 rounded-b-md mb-0">
                         <h2 className="card-title text-blue-900 text-4xl">{add.name.toUpperCase()}</h2>
                         <div className='flex justify-between'>
-                            <p className='font-semibold text-white'>Price: $ {add.price}</p>
+                            <p className='font-semibold text-white'>Price: $ {add.OrginalPrice}</p>
                             <p className='font-semibold text-white'>Year of Uses : {add.yearOfUses} year</p>
                         </div>
                         <div className="card-actions justify-between ">
-                            <button className="btn btn-primary ">Buy Now</button>
-                            {Admin && <button className="btn btn-primary ">Delete</button>}
+                            <label htmlFor="ConfirmModal" className="btn btn-primary w-full mb-0" onClick={() => setModalName(add)} >Book Now</label>
+                            {Admin && <button className="btn btn-primary " onClick={() => handleDelete(add._id)}>Delete</button>}
                         </div>
                     </div>
                 </div>)
             }
+
+            {
+                modalName && <ConfirmationModal
+                    modalName={modalName}
+                    setModalName={setModalName}
+
+                ></ConfirmationModal>
+            }
+
         </div>
     );
 };
