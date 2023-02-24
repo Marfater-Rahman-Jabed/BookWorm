@@ -37,7 +37,7 @@ const Dashboard = () => {
                                 <td><img src={order.picture} alt="" className='w-12 h-12' /></td>
                                 <td>{order.BookName}</td>
                                 <td> $ {order.price}</td>
-                                <td><Link to={`/dashboard/payment/${order._id}`} className='btn btn-error success btn-sm' >Make Pay</Link></td>
+                                {order?.paid ? <td className='text-success font-bold'>Paid</td> : <td><Link to={`/dashboard/payment/${order._id}`} className='btn btn-error success btn-sm' >Make Pay</Link></td>}
 
 
                             </tr>)

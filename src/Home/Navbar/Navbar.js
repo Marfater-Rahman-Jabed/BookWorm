@@ -26,27 +26,27 @@ const NavBar = () => {
 
 
     const menuItems = <>
-        <li><Link to='/'>Home</Link></li>
-        {buyer && <li><Link to='/dashboard/bookings'>My Orders</Link></li>}
+        <li className='font-semibold  hover:bg-blue-600 rounded-lg hover:text-white'><Link to='/'>Home</Link></li>
+        {user && <li className='font-semibold  hover:bg-blue-600 rounded-lg hover:text-white'><Link to='/dashboard'>My Orders</Link></li>}
 
-        {seller && <>
-            <li><Link to='/dashboard/addproducts'>Add Products</Link></li>
-            <li><Link to='/dashboard/myproducts'>My Products</Link></li>
+        {user && seller && <>
+            <li className='font-semibold  hover:bg-blue-600 rounded-lg hover:text-white'><Link to='/dashboard/addproducts'>Add Products</Link></li>
+            <li className='font-semibold  hover:bg-blue-600 rounded-lg hover:text-white'><Link to='/dashboard/myproducts'>My Products</Link></li>
 
         </>}
-        {Admin &&
+        {user && Admin &&
             <>
-                <li><Link to='/dashboard/allseller'>All Seller</Link></li>
-                <li><Link to='/dashboard/allbuyer'>All Buyer</Link></li>
+                <li className='font-semibold  hover:bg-blue-600 rounded-lg hover:text-white'><Link to='/dashboard/allseller'>All Seller</Link></li>
+                <li className='font-semibold  hover:bg-blue-600 rounded-lg hover:text-white'><Link to='/dashboard/allbuyer'>All Buyer</Link></li>
             </>}
 
-        <li><Link to='/blog'>Blog</Link></li>
-        <li><Link to='/dashboard'>Dashboard</Link></li>
-        <li><Link to='/register'>Register</Link></li>
+        <li className='font-semibold  hover:bg-blue-600 rounded-lg hover:text-white'><Link to='/blog'>Blog</Link></li>
+        <li className='font-semibold  hover:bg-blue-600 rounded-lg hover:text-white'><Link to='/dashboard'>Dashboard</Link></li>
+        <li className='font-semibold  hover:bg-blue-600 rounded-lg hover:text-white'><Link to='/register'>Register</Link></li>
         {user?.email ?
-            <li><button onClick={handleLogOut}>LogOut</button></li>
+            <li className='font-semibold  hover:bg-blue-600 rounded-lg hover:text-white'><button onClick={handleLogOut}>LogOut</button></li>
             :
-            <li><Link to='/login'>Login</Link></li>
+            <li className='font-semibold  hover:bg-blue-600 rounded-lg hover:text-white'><Link to='/login'>Login</Link></li>
 
         }
     </>

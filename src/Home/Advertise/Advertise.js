@@ -32,8 +32,10 @@ const Advertise = () => {
 
     }
 
+
+
     return (
-        <div className='mb-5 bg-slate-500 rounded-b-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12'>
+        <div className='mb-5 bg-slate-400 rounded-b-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12'>
             {
                 Advertise.map((add, i) => <div key={i} className="card  bg-base-100 shadow-xl mb-3 ">
                     <figure><img src={add.picture} alt="Shoes" className='w-full h-60' /></figure>
@@ -43,8 +45,8 @@ const Advertise = () => {
                             <p className='font-semibold text-white'>Price: $ {add.OrginalPrice}</p>
                             <p className='font-semibold text-white'>Year of Uses : {add.yearOfUses} year</p>
                         </div>
-                        <div className="card-actions justify-between ">
-                            <label htmlFor="ConfirmModal" className="btn btn-primary w-full mb-0" onClick={() => setModalName(add)} >Book Now</label>
+                        <div className="card-actions flex justify-between ">
+                            <label htmlFor="ConfirmModal" className="btn btn-primary  mb-0" onClick={() => { setModalName(add) }} >Book Now</label>
                             {Admin && <button className="btn btn-primary " onClick={() => handleDelete(add._id)}>Delete</button>}
                         </div>
                     </div>
@@ -59,7 +61,7 @@ const Advertise = () => {
                 ></ConfirmationModal>
             }
 
-        </div>
+        </div >
     );
 };
 

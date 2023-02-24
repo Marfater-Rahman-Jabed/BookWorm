@@ -10,7 +10,7 @@ const Home = () => {
             <Banner></Banner>
             <BookCategory></BookCategory>
             <div className=' mt-12 shadow-2xl '>
-                <div className="divider mb-0 rounded-t-md font-bold text-5xl pb-24 text-red-600 bg-slate-500 ">Advertisement</div>
+                <div className="divider mb-0 rounded-t-md font-bold text-5xl pb-24 text-red-600 bg-slate-400 ">Advertisement</div>
             </div>
             <Advertise></Advertise>
         </div>
