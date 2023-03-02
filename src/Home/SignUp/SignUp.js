@@ -52,10 +52,11 @@ const SignUp = () => {
             role: data.role
         }
 
-        fetch(`http://localhost:5000/useradd`, {
+        fetch(`https://used-book-server.vercel.app/useradd`, {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+
             },
             body: JSON.stringify(details)
         })

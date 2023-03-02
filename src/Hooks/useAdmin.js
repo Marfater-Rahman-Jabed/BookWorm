@@ -7,7 +7,11 @@ const useAdmin = email => {
 
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/alluser/admin/${email}`)
+            fetch(`https://used-book-server.vercel.app/alluser/admin/${email}`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
                 .then(res => res.json())
                 .then(data => {
                     // localStorage.setItem('accessToken', data.isAdmin)

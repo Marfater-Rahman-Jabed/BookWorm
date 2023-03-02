@@ -8,7 +8,7 @@ const MyProduct = () => {
     const { data: myProducts = [] } = useQuery({
         queryKey: ['product'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/myproduct?email=${user?.email}`);
+            const res = await fetch(`https://used-book-server.vercel.app/myproduct?email=${user?.email}`);
             const data = res.json();
             return data;
 
@@ -27,10 +27,13 @@ const MyProduct = () => {
             yearOfUses: product.yearOfUses,
         }
 
-        fetch(`http://localhost:5000/advertise`, {
+        fetch(`https://used-book-server.vercel.app/advertise`, {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+
             },
             body: JSON.stringify(productDetail)
 

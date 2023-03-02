@@ -24,10 +24,13 @@ const ConfirmationModal = ({ modalName, setModalName }) => {
         }
 
 
-        fetch('http://localhost:5000/booking', {
+        fetch('https://used-book-server.vercel.app/booking', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+
             },
             body: JSON.stringify(booking)
         })
@@ -56,7 +59,7 @@ const ConfirmationModal = ({ modalName, setModalName }) => {
                         <label className="label">
                             <span className="label-text">Email</span>
                         </label>
-                        <input name='email' type="text" placeholder='name' readOnly defaultValue={user.email} className="input input-bordered text-orange-500 w-full bg-slate-300 font-semibold" />
+                        <input name='email' type="text" placeholder='name' readOnly defaultValue={user?.email} className="input input-bordered text-orange-500 w-full bg-slate-300 font-semibold" />
 
                         <label className="label">
                             <span className="label-text">Price</span>

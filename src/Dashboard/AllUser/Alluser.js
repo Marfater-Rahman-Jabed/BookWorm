@@ -10,15 +10,23 @@ const Alluser = () => {
     const { data: Alluser = [], refetch } = useQuery({
         queryKey: ['user'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/alluser`)
+            const res = await fetch(`https://used-book-server.vercel.app/alluser`, {
+                method: 'GET',
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
             const data = res.json();
             return data;
         }
     })
 
     const handleAdmin = (id) => {
-        fetch(`http://localhost:5000/alluser/admin/${id}`, {
-            method: 'PUT'
+        fetch(`https://used-book-server.vercel.app/alluser/admin/${id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
         })
             .then(res => res.json())
             .then(data => {
@@ -28,7 +36,7 @@ const Alluser = () => {
             })
     }
     const handleDelete = (id, email) => {
-        fetch(`http://localhost:5000/alluser/${id}`, {
+        fetch(`https://used-book-server.vercel.app/alluser/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -48,8 +56,11 @@ const Alluser = () => {
     }
 
     const handleVerify = (id) => {
-        fetch(`http://localhost:5000/alluser/verify/${id}`, {
-            method: 'PUT'
+        fetch(`https://used-book-server.vercel.app/alluser/verify/${id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
         })
             .then(res => res.json())
             .then(data => {

@@ -6,7 +6,11 @@ const useToken = email => {
 
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/jwt?email=${email}`)
+            fetch(`https://used-book-server.vercel.app/jwt?email=${email}`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
                 .then(res => res.json())
                 .then(data => {
                     localStorage.setItem('accessToken', data.accessToken)

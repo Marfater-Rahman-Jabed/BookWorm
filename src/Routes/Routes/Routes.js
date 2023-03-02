@@ -42,7 +42,7 @@ export const router = createBrowserRouter([
             {
                 path: '/book/:id',
                 element: <PrivateRoutes><BookCategoryDetails></BookCategoryDetails></PrivateRoutes>,
-                loader: ({ params }) => fetch(`http://localhost:5000/book/${params.id}`)
+                loader: ({ params }) => fetch(`https://used-book-server.vercel.app/book/${params.id}`)
 
             }
         ]
@@ -78,7 +78,7 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({ params }) => fetch(`http://localhost:5000/orders/${params.id}`)
+                loader: ({ params }) => fetch(`https://used-book-server.vercel.app/orders/${params.id}`)
             },
         ]
     }, {

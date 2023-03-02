@@ -48,10 +48,13 @@ const AddProduct = () => {
 
                     }
                     console.log(productDetails)
-                    fetch('http://localhost:5000/book', {
+                    fetch('https://used-book-server.vercel.app/book', {
                         method: 'PUT',
                         headers: {
-                            'content-type': 'application/json'
+                            'content-type': 'application/json',
+
+                            authorization: `bearer ${localStorage.getItem('accessToken')}`
+
                         },
                         body: JSON.stringify(productDetails)
                     })
@@ -64,10 +67,12 @@ const AddProduct = () => {
                         })
 
 
-                    fetch('http://localhost:5000/sellerbook', {
+                    fetch('https://used-book-server.vercel.app/sellerbook', {
                         method: 'POST',
                         headers: {
-                            'content-type': 'application/json'
+                            'content-type': 'application/json',
+                            authorization: `bearer ${localStorage.getItem('accessToken')}`
+
                         },
                         body: JSON.stringify(productDetails)
 

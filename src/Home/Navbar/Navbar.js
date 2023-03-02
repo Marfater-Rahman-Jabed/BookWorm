@@ -67,7 +67,7 @@ const NavBar = () => {
 
                 <img src={imgLogo} className='lg:w-24 md:w-22   sm:w-20  rounded-full   ' alt="" />
 
-                <Link className=" normal-case lg:text-5xl md:text-4xl  mx-2 font-bold" to='/'>Book <span className='text-yellow-500 ml-0'>Worm</span></Link>
+                <Link className=" normal-case lg:text-5xl md:text-4xl  mx-4 font-bold" to='/'>Book <br /> <span className='text-yellow-500 ml-0'>Worm</span></Link>
 
             </div>
             <div className="navbar-center hidden lg:flex">

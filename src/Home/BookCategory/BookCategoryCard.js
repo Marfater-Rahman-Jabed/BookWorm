@@ -7,7 +7,7 @@ const BookCategoryCard = ({ category }) => {
     const { picture, name, _id } = category;
 
     // const handleUpdate = (id) => {
-    //     fetch(`http://localhost:5000/category/update/${id}`, {
+    //     fetch(`https://used-book-server.vercel.app/category/update/${id}`, {
     //         method: 'PUT'
     //     })
     //         .then(res => res.json())

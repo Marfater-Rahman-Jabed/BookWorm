@@ -14,11 +14,13 @@ const CheckOut = ({ data }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://used-book-server.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `bearer ${localStorage.getItem('accessToken')}`
+
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+
             },
             body: JSON.stringify({ price }),
         })
@@ -74,13 +76,15 @@ const CheckOut = ({ data }) => {
             setProcessing(false)
 
             const payment = {
+                email: data.email,
                 name: data.name,
+                BookName: data.BookName,
                 price,
                 transectionId: paymentIntent.id,
                 bookingId: data._id
             }
 
-            fetch('http://localhost:5000/payment', {
+            fetch('https://used-book-server.vercel.app/payment', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -126,7 +130,7 @@ const CheckOut = ({ data }) => {
             {
                 success && <>
                     <p className='text-success'>{success}</p>
-                    <p> Your Transection id : <strong>{transectionId}</strong></p>
+                    <p className='text-red-600'> Please check your Email or spam folder to get Transection Id</p>
                 </>
             }
         </>

@@ -10,7 +10,7 @@ const Advertise = () => {
     const { data: Advertise = [], refetch } = useQuery({
         queryKey: ['advertise'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/advertise`);
+            const res = await fetch(`https://used-book-server.vercel.app/advertise`);
             const data = res.json();
             return data;
         }
@@ -19,7 +19,7 @@ const Advertise = () => {
     const [Admin] = useAdmin(user?.email);
     const handleDelete = (id) => {
         console.log(id)
-        fetch(`http://localhost:5000/advertise/${id}`, {
+        fetch(`https://used-book-server.vercel.app/advertise/${id}`, {
             method: 'DELETE'
         })
             .then(result => {
@@ -46,7 +46,7 @@ const Advertise = () => {
                             <p className='font-semibold text-white'>Year of Uses : {add.yearOfUses} year</p>
                         </div>
                         <div className="card-actions flex justify-between ">
-                            <label htmlFor="ConfirmModal" className="btn btn-primary  mb-0" onClick={() => { setModalName(add) }} >Book Now</label>
+                            {user && <label htmlFor="ConfirmModal" className="btn btn-primary  mb-0" onClick={() => { setModalName(add) }} >Book Now</label>}
                             {Admin && <button className="btn btn-primary " onClick={() => handleDelete(add._id)}>Delete</button>}
                         </div>
                     </div>
