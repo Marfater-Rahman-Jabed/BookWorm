@@ -10,7 +10,7 @@ const Advertise = () => {
     const { data: Advertise = [], refetch } = useQuery({
         queryKey: ['advertise'],
         queryFn: async () => {
-            const res = await fetch(`https://used-book-server.vercel.app/advertise`);
+            const res = await fetch(`http://localhost:5000/advertise`);
             const data = res.json();
             return data;
         }
@@ -19,7 +19,7 @@ const Advertise = () => {
     const [Admin] = useAdmin(user?.email);
     const handleDelete = (id) => {
         console.log(id)
-        fetch(`https://used-book-server.vercel.app/advertise/${id}`, {
+        fetch(`http://localhost:5000/advertise/${id}`, {
             method: 'DELETE'
         })
             .then(result => {
@@ -35,7 +35,8 @@ const Advertise = () => {
 
 
     return (
-        <div className='mb-5 bg-slate-400 rounded-b-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12'>
+        // 
+        <div className='mb-5 bg-slate-400 rounded-b-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12' >
             {
                 Advertise.map((add, i) => <div key={i} className="card  bg-base-100 shadow-xl mb-3 ">
                     <figure><img src={add.picture} alt="Shoes" className='w-full h-60' /></figure>
@@ -51,6 +52,22 @@ const Advertise = () => {
                         </div>
                     </div>
                 </div>)
+                // <div className="carousel w-full">
+                //     {
+
+                //         Advertise.map((add, i) => <div key={i}>
+                //             <div id={`#slide${i}`} className="carousel-item relative w-full">
+                //                 <img src={add.picture} alt='' className="w-full" />
+                //                 <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                //                     <a href={`#slide${i - 1}`} className="btn btn-circle">❮</a>
+                //                     <a href={`#slide${i}`} className="btn btn-circle">❯</a>
+                //                 </div>
+                //             </div>
+
+                //         </div>)
+                //     }
+                // </div>
+
             }
 
             {

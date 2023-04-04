@@ -10,7 +10,7 @@ const Alluser = () => {
     const { data: Alluser = [], refetch } = useQuery({
         queryKey: ['user'],
         queryFn: async () => {
-            const res = await fetch(`https://used-book-server.vercel.app/alluser`, {
+            const res = await fetch(`http://localhost:5000/alluser`, {
                 method: 'GET',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -22,7 +22,7 @@ const Alluser = () => {
     })
 
     const handleAdmin = (id) => {
-        fetch(`https://used-book-server.vercel.app/alluser/admin/${id}`, {
+        fetch(`http://localhost:5000/alluser/admin/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -36,7 +36,7 @@ const Alluser = () => {
             })
     }
     const handleDelete = (id, email) => {
-        fetch(`https://used-book-server.vercel.app/alluser/${id}`, {
+        fetch(`http://localhost:5000/alluser/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -56,7 +56,7 @@ const Alluser = () => {
     }
 
     const handleVerify = (id) => {
-        fetch(`https://used-book-server.vercel.app/alluser/verify/${id}`, {
+        fetch(`http://localhost:5000/alluser/verify/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

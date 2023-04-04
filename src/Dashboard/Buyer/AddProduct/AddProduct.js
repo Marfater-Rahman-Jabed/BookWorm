@@ -48,7 +48,7 @@ const AddProduct = () => {
 
                     }
                     console.log(productDetails)
-                    fetch('https://used-book-server.vercel.app/book', {
+                    fetch('http://localhost:5000/book', {
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/json',
@@ -67,7 +67,7 @@ const AddProduct = () => {
                         })
 
 
-                    fetch('https://used-book-server.vercel.app/sellerbook', {
+                    fetch('http://localhost:5000/sellerbook', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
@@ -92,7 +92,7 @@ const AddProduct = () => {
             <form className='grid grid-cols-1 w-1/2 mx-auto  gap-3 mt-4  border-4 rounded-lg bg-slate-400' onSubmit={handleSubmit(handleAddProduct)}>
 
 
-                <select className="select input-bordered input-primary w-full" {...register('category')}>
+                <select className="select input-bordered input-primary w-full" {...register('category')} required>
 
                     <option disabled selected defaultValue={' '}>Select Category</option>
                     <option value='63ef13d8e95db09c76ca4bd2 63e63c0c1e93df93066df547'>Religious</option>
@@ -102,14 +102,14 @@ const AddProduct = () => {
                     <option value='63ef13d8e95db09c76ca4bd6 63e63c0c1e93df93066df54b'>Kids Book</option>
                     <option value='63ef13d8e95db09c76ca4bd7 63e63c0c1e93df93066df54c'>Magazine</option>
                 </select>
-                <input type="text" placeholder="Enter Product Name" className="input input-bordered input-primary w-full "  {...register('productName')} />
-                <input type="tel" placeholder="Product Original Price" className="input input-bordered input-primary w-full "  {...register('resalePrice')} />
-                <input type="tel" placeholder="Mobile Number" className="input input-bordered input-primary w-full " {...register('phoneNumber')} />
-                <input type="text" placeholder="Location" className="input input-bordered input-primary w-full " {...register('location')} />
-                <input type="tel" placeholder="Selling Price" className="input input-bordered input-primary w-full " {...register('originalPrice')} />
+                <input type="text" placeholder="Enter Product Name" className="input input-bordered input-primary w-full "  {...register('productName')} required />
+                <input type="tel" placeholder="Product Original Price" className="input input-bordered input-primary w-full "  {...register('resalePrice')} required />
+                <input type="tel" placeholder="Mobile Number" className="input input-bordered input-primary w-full " {...register('phoneNumber')} required />
+                <input type="text" placeholder="Location" className="input input-bordered input-primary w-full " {...register('location')} required />
+                <input type="tel" placeholder="Selling Price" className="input input-bordered input-primary w-full " {...register('originalPrice')} required />
                 <input type="tel" placeholder="Year of Purchase" className="input input-bordered input-primary w-full " {...register('yearOfUse')} />
 
-                <input type="file" placeholder="image" className="input input-bordered input-primary input-sm w-full align-middle " {...register('image')} />
+                <input type="file" placeholder="image" className="input input-bordered input-primary input-sm w-full align-middle " {...register('image')} required />
                 <input type="submit" value="submit" className="btn btn-primary mb-2 w-full " />
             </form>
         </div>

@@ -1,14 +1,16 @@
 import { async } from '@firebase/util';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { useQuery } from 'react-query';
 import { AuthContexts } from '../../../Contexts/AuthContext';
 
 const MyProduct = () => {
-    const { user } = useContext(AuthContexts)
+    const { user } = useContext(AuthContexts);
+    const [isAdvertise, setIsAdvertise] = useState(false)
     const { data: myProducts = [] } = useQuery({
         queryKey: ['product'],
         queryFn: async () => {
-            const res = await fetch(`https://used-book-server.vercel.app/myproduct?email=${user?.email}`);
+            const res = await fetch(`http://localhost:5000/myproduct?email=${user?.email}`);
             const data = res.json();
             return data;
 
@@ -16,7 +18,9 @@ const MyProduct = () => {
     })
 
     const handleAdvertise = (id, product) => {
-        console.log(product)
+        console.log(product);
+        toast.success('Successfully add Advertisement Section. You get 30 days Free advertise.. Then you have to pay for Show Advertise.')
+        setIsAdvertise(true)
         const productDetail = {
             productId: product._id,
             picture: product.picture,
@@ -27,7 +31,7 @@ const MyProduct = () => {
             yearOfUses: product.yearOfUses,
         }
 
-        fetch(`https://used-book-server.vercel.app/advertise`, {
+        fetch(`http://localhost:5000/advertise`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -70,7 +74,11 @@ const MyProduct = () => {
                                 <td>{product.name}</td>
                                 <td>{product.OrginalPrice}</td>
                                 <td>{product.postedTime.slice(0, 10)}</td>
-                                <td><button className='btn btn-success btn-sm' onClick={() => handleAdvertise(product._id, product)}>Advertise</button></td>
+                                <td>
+
+                                    <button className='btn btn-success btn-sm' onClick={() => handleAdvertise(product._id, product)}>Advertise</button>
+
+                                </td>
                             </tr>)
                         }
                     </tbody>

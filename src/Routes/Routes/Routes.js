@@ -6,6 +6,7 @@ import AddProduct from "../../Dashboard/Buyer/AddProduct/AddProduct";
 import MyProduct from "../../Dashboard/Buyer/MyProduct/MyProduct";
 import Dashboard from "../../Dashboard/Dashboard";
 import Payment from "../../Dashboard/Payment/Payment";
+import SuccessPayment from "../../Dashboard/Payment/SuccessPayment";
 import Blog from "../../Home/Blog/Blog";
 import BookCategoryDetails from "../../Home/BookCategoryDetails/BookCategoryDetails";
 import Home from "../../Home/Home/Home";
@@ -42,7 +43,7 @@ export const router = createBrowserRouter([
             {
                 path: '/book/:id',
                 element: <PrivateRoutes><BookCategoryDetails></BookCategoryDetails></PrivateRoutes>,
-                loader: ({ params }) => fetch(`https://used-book-server.vercel.app/book/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/book/${params.id}`)
 
             }
         ]
@@ -78,8 +79,12 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({ params }) => fetch(`https://used-book-server.vercel.app/orders/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/orders/${params.id}`)
             },
+            {
+                path: '/dashboard/payment/success',
+                element: <SuccessPayment></SuccessPayment>
+            }
         ]
     }, {
         path: '*',

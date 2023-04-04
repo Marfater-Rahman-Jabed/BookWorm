@@ -20,11 +20,11 @@ const ConfirmationModal = ({ modalName, setModalName }) => {
         // toast.success('successfully booked')
 
         const booking = {
-            name, email, price, phone, location, BookName, picture
+            name, email, price, phone, location, BookName, picture, currency: 'BDT'
         }
 
 
-        fetch('https://used-book-server.vercel.app/booking', {
+        fetch(' http://localhost:5000/booking', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -37,10 +37,14 @@ const ConfirmationModal = ({ modalName, setModalName }) => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                if (data.acknowledged) {
-                    toast.success('successfully booked');
-                    setModalName(null)
-                }
+                // if (data.acknowledged) {
+                //     toast.success('successfully booked');
+                //     setModalName(null)
+                // }
+                toast.success('Please GO to payment')
+                setModalName(null)
+
+                window.location.replace(data.url)
             })
 
     }
@@ -73,7 +77,7 @@ const ConfirmationModal = ({ modalName, setModalName }) => {
                             <span className="label-text">Location*</span>
                         </label>
                         <input name='location' type="text" placeholder='Please enter your meeting location ' className="input input-bordered mb-6 w-full bg-slate-300  text-orange-500 font-semibold " required />
-                        <input type="submit" className='btn btn-primary input-bordered mb-0  w-full' value="Submit" />
+                        <input type="submit" className='btn btn-primary input-bordered mb-0  w-full' value="Pay" />
                     </form>
                 </div>
             </div>

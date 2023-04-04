@@ -7,7 +7,7 @@ const useVerifyed = email => {
 
     useEffect(() => {
         if (email) {
-            fetch(`https://used-book-server.vercel.app/alluser/verifyed/${email}`, {
+            fetch(`http://localhost:5000/alluser/verifyed/${email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }

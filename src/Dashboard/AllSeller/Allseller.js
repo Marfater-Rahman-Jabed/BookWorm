@@ -7,7 +7,7 @@ const Allseller = () => {
     const { data: AllSeller = [], refetch } = useQuery({
         queryKey: ['seller'],
         queryFn: async () => {
-            const res = await fetch(`https://used-book-server.vercel.app/allseller`, {
+            const res = await fetch(`http://localhost:5000/allseller`, {
                 method: 'GET',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`

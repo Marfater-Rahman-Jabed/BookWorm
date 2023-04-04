@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import { AuthContexts } from '../Contexts/AuthContext';
@@ -8,7 +8,7 @@ const Dashboard = () => {
     const { data: Orders = [] } = useQuery({
         queryKey: ['orders'],
         queryFn: async () => {
-            const res = await fetch(`https://used-book-server.vercel.app/orders?email=${user?.email}`, {
+            const res = await fetch(`http://localhost:5000/orders?email=${user?.email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -17,6 +17,16 @@ const Dashboard = () => {
             return data;
         }
     })
+
+    // const handlePay = () => {
+
+    //     fetch(`http://localhost:5000/init`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             console.log(data);
+    //         })
+
+    // }
     return (
         <div>
             <div className="overflow-x-auto">
@@ -41,13 +51,19 @@ const Dashboard = () => {
                                 <td><img src={order.picture} alt="" className='w-12 h-12' /></td>
                                 <td>{order.BookName}</td>
                                 <td> $ {order.price}</td>
-                                {order?.paid ? <td className='text-success font-bold'>Paid</td> : <td><Link to={`/dashboard/payment/${order._id}`} className='btn btn-error success btn-sm' >Make Pay</Link></td>}
+                                {order?.paid === true ? <td className='text-success font-bold'>Paid</td> : <td><Link to={`/dashboard/payment/${order?._id}`}>
+                                    <button className='btn bg-orange-600 btn-sm'>Pay</button>
+                                </Link></td>}
 
 
                             </tr>)
                         }
                     </tbody>
                 </table>
+
+            </div>
+            <div className='flex justify-end'>
+                <button className='btn btn-primary mb-3 print:hidden' onClick={() => window.print()}>Print Your Order</button>
             </div>
         </div>
     );
