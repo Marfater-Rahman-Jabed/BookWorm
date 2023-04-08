@@ -1,11 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { useQuery } from 'react-query';
 import { AuthContexts } from '../../Contexts/AuthContext';
 import useAdmin from '../../Hooks/useAdmin';
 import ConfirmationModal from '../ConfirmationModal/ConfirmationModal';
 
 const Advertise = () => {
-    const [modalName, setModalName] = useState(null)
+    const [modalName, setModalName] = useState(null);
+    const [times, setTimes] = useState(24 * 60 * 60 * 1000)
 
     const { data: Advertise = [], refetch } = useQuery({
         queryKey: ['advertise'],
@@ -17,20 +19,30 @@ const Advertise = () => {
     });
     const { user } = useContext(AuthContexts);
     const [Admin] = useAdmin(user?.email);
-    const handleDelete = (id) => {
-        console.log(id)
-        fetch(`http://localhost:5000/advertise/${id}`, {
-            method: 'DELETE'
-        })
-            .then(result => {
-                refetch()
+    const handleDelete = (id, time) => {
+        let date1 = new Date(time);
+        let date2 = new Date()
+        console.log(date1, date2)
+        if (date1 <= date2) {
+            fetch(`http://localhost:5000/alladvertise/${id}`, {
+                method: 'DELETE'
             })
-            .then(error => {
-                // console.log(error)
-            })
-
+                .then(res => res.json())
+                .then(data => {
+                    toast.success('Successfully removed from Advertisement section')
+                    console.log(data)
+                    refetch();
+                })
+        }
+        else {
+            console.log('no');
+            toast.error("This item still have Valid Time")
+        }
 
     }
+
+
+
 
 
 
@@ -47,8 +59,11 @@ const Advertise = () => {
                             <p className='font-semibold text-white'>Year of Uses : {add.yearOfUses} year</p>
                         </div>
                         <div className="card-actions flex justify-between ">
-                            {user && <label htmlFor="ConfirmModal" className="btn btn-primary  mb-0" onClick={() => { setModalName(add) }} >Book Now</label>}
-                            {Admin && <button className="btn btn-primary " onClick={() => handleDelete(add._id)}>Delete</button>}
+                            {user && <label htmlFor="ConfirmModal" className="btn btn-primary  mb-0" onClick={() => { setModalName(add) }}  >Book Now  </label>}
+                            {Admin && <button className="btn btn-primary " onClick={() => handleDelete(add._id, add.validTime)}>Delete</button>}
+
+
+
                         </div>
                     </div>
                 </div>)

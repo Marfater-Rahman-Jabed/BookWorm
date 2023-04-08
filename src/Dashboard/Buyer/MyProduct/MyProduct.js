@@ -19,7 +19,7 @@ const MyProduct = () => {
 
     const handleAdvertise = (id, product) => {
         console.log(product);
-        toast.success('Successfully add Advertisement Section. You get 30 days Free advertise.. Then you have to pay for Show Advertise.')
+        toast.success('Successfully add Advertisement Section. You get 2 days Free advertise.. Then you have to pay for Show Advertise.')
         setIsAdvertise(true)
         const productDetail = {
             productId: product._id,
@@ -29,6 +29,7 @@ const MyProduct = () => {
             email: product.email,
             location: product.location,
             yearOfUses: product.yearOfUses,
+            validTime: new Date(new Date().getTime() + 48 * 60 * 60 * 1000).toGMTString()
         }
 
         fetch(`http://localhost:5000/advertise`, {
