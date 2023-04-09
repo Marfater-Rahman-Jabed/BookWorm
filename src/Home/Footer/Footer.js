@@ -4,10 +4,10 @@ import imgLogo from '../../Assets/BookLogo.jpg'
 const Footer = () => {
     return (
         <div>
-            <footer className="footer p-10 bg-black text-white py-6 text-base-content">
+            <footer className="footer p-10 bg-black text-white py-6 text-base-content ">
                 <div>
                     <img src={imgLogo} className='w-44 rounded-lg' alt="" />
-                    <p>ACME Industries Ltd.<br />Providing reliable tech since 1992</p>
+                    <p>BookWorm Ltd.<br />Providing  Book buy and sell <br />service since 2022</p>
                 </div>
                 <div>
                     <span className="footer-title">Services</span>

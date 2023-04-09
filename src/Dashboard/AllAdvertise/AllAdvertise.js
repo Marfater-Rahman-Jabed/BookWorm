@@ -21,7 +21,8 @@ const AllAdvertise = () => {
         // console.log(id, time, new Date().toGMTString());
         let date1 = new Date(time);
         let date2 = new Date()
-        console.log(date1, date2)
+        const diff = date1.getDate() - date2.getDate();
+        console.log(diff)
         if (date1 <= date2) {
             fetch(`http://localhost:5000/alladvertise/${id}`, {
                 method: 'DELETE'
@@ -35,7 +36,12 @@ const AllAdvertise = () => {
         }
         else {
             console.log('no');
-            toast.error("This item still have Valid Time")
+            if (diff > 0) {
+                toast.error(`This item still have 0${diff} ${diff === 1 ? 'day' : 'days'} Valid Time . Last valid Date is ${time.slice(5, 16)} and Time is ${time.slice(16, 26)}(GMT)`)
+            }
+            else {
+                toast.error(`This item still have Valid Time . Today is the last Day and Last Time is ${time.slice(16, 26)}(GMT)`)
+            }
         }
     }
     return (
@@ -50,13 +56,13 @@ const AllAdvertise = () => {
                             <th>Email</th>
                             <th>Expired Day</th>
                             <th>Expired Date</th>
-                            <th>Expired Time <br />(GMT)</th>
+                            <th className="text-center">Expired Time <br />(GMT)</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            allAdvertise.map((advertised, i) => <tr key={i}>
+                            allAdvertise.map((advertised, i) => <tr key={i} className="hover">
                                 <td>{i + 1}</td>
                                 <td>
                                     <div className="flex items-center space-x-3">
@@ -71,7 +77,7 @@ const AllAdvertise = () => {
                                 <td>
                                     {advertised.name}
                                 </td>
-                                <td>{advertised.email}</td>
+                                <td title={advertised.email}>{advertised.email.split("@")[0]}...</td>
                                 <th>
                                     {advertised.validTime.slice(0, 3)}
                                 </th>

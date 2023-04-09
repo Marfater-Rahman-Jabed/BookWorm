@@ -62,9 +62,15 @@ const Dashboard = () => {
                 </table>
 
             </div>
-            <div className='flex justify-end'>
-                <button className='btn btn-primary mb-3 print:hidden' onClick={() => window.print()}>Print Your Order</button>
-            </div>
+            {Orders.length > 0 ? <div className='flex justify-end'>
+                {
+                    <button className='btn btn-primary mb-3 print:hidden' onClick={() => window.print()}>Print Your Order</button>
+                }
+            </div> :
+                <div className='text-center text-5xl text-orange-700 mt-20'>
+                    <p>No Order Confirm Yet...</p>
+                </div>
+            }
         </div>
     );
 };
