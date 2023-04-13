@@ -44,7 +44,8 @@ const AddProduct = () => {
                         yearOfUses: data.yearOfUse,
                         postedTime: new Date(),
                         resalePrice: data.resalePrice,
-                        OrginalPrice: data.originalPrice
+                        OrginalPrice: data.originalPrice,
+                        sellerPhone: data.phoneNumber
 
                     }
                     console.log(productDetails)
@@ -108,6 +109,7 @@ const AddProduct = () => {
                 <input type="text" placeholder="Location" className="input input-bordered input-primary w-full " {...register('location')} required />
                 <input type="tel" placeholder="Selling Price" className="input input-bordered input-primary w-full " {...register('originalPrice')} required />
                 <input type="tel" placeholder="Year of Purchase" className="input input-bordered input-primary w-full " {...register('yearOfUse')} />
+
 
                 <input type="file" placeholder="image" className="input input-bordered input-primary input-sm w-full align-middle " {...register('image')} required />
                 <input type="submit" value="submit" className="btn btn-primary mb-2 w-full " />

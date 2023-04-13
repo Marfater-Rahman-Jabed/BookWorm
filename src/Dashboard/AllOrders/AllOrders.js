@@ -58,18 +58,18 @@ const AllOrders = () => {
                                 <td >
                                     <div className="avatar">
                                         <div className="mask mask-squircle lg:w-8 lg:h-8 md:w-8 md:h-8 sm:w-4 sm:h-4">
-                                            <img src={order.picture} alt="" />
+                                            <img src={order?.picture} alt="" />
                                         </div>
                                     </div>
                                 </td>
-                                <td className='lg:text-sm md:text-xs sm:text-xs '>{order.BookName}</td>
-                                <td className='lg:text-sm md:text-xs sm:text-xs ' title={order.email}>{order.email.split("@")[0]}...</td>
-                                <td className='lg:text-sm md:text-xs sm:text-xs ' title={order.phone}>01***{order.phone.slice(-3)}</td>
-                                <td className='lg:text-sm md:text-xs sm:text-xs '>{order.location}</td>
-                                <td className='lg:text-sm md:text-xs sm:text-xs ' title={order.transectionId}>{order.transectionId.slice(0, 9)}...</td>
-                                <td className='lg:text-sm md:text-xs sm:text-xs '>{order.paid === true ? <span className='text-green-700 font-bold'>Paid</span> : <span className='text-red-700 font-bold'>Not Paid</span>}</td>
+                                <td className='lg:text-sm md:text-xs sm:text-xs ' title={order?.BookName}>{order?.BookName?.slice(0, 8)}...</td>
+                                <td className='lg:text-sm md:text-xs sm:text-xs ' title={order?.email}>{order?.email?.split("@")[0]}...</td>
+                                <td className='lg:text-sm md:text-xs sm:text-xs ' title={order?.phone}>01***{order?.phone?.slice(-3)}</td>
+                                <td className='lg:text-sm md:text-xs sm:text-xs '>{order?.location}</td>
+                                <td className='lg:text-sm md:text-xs sm:text-xs ' title={order?.transectionId}>{order?.transectionId?.slice(0, 9)}...</td>
+                                <td className='lg:text-sm md:text-xs sm:text-xs '>{order?.paid === true ? <span className='text-blue-900 font-bold'>Paid</span> : <span className='text-red-700 font-bold'>Not Paid</span>}</td>
                                 <td className='lg:text-sm md:text-xs sm:text-xs '><button className='btn btn-sm bg-red-700' title='Delete' onClick={
-                                    () => handleDelete(order._id)}>X</button></td>
+                                    () => handleDelete(order?._id)}>X</button></td>
                             </tr>)
                         }
                     </tbody>

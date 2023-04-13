@@ -6,9 +6,9 @@ import Carusel from '../Carusel/Carusel';
 const Banner = () => {
 
     return (
-        <div >
+        <div className=''>
             {/* <img src={img[times]} alt="" className='w-full h-[500px]' /> */}
-            <Carusel></Carusel>
+            <Carusel ></Carusel>
 
 
         </div>

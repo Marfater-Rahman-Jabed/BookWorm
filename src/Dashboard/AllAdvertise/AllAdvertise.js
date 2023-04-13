@@ -22,7 +22,8 @@ const AllAdvertise = () => {
         let date1 = new Date(time);
         let date2 = new Date()
         const diff = date1.getDate() - date2.getDate();
-        console.log(diff)
+        let localDate1 = date1.toString()
+        // console.log(localDate1.slice(16, 25))
         if (date1 <= date2) {
             fetch(`http://localhost:5000/alladvertise/${id}`, {
                 method: 'DELETE'
@@ -56,7 +57,7 @@ const AllAdvertise = () => {
                             <th>Email</th>
                             <th>Expired Day</th>
                             <th>Expired Date</th>
-                            <th className="text-center">Expired Time <br />(GMT)</th>
+                            <th className="text-center">Expired Time </th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -77,17 +78,17 @@ const AllAdvertise = () => {
                                 <td>
                                     {advertised.name}
                                 </td>
-                                <td title={advertised.email}>{advertised.email.split("@")[0]}...</td>
+                                <td title={advertised.email}>{advertised?.email?.split("@")[0]}...</td>
                                 <th>
-                                    {advertised.validTime.slice(0, 3)}
+                                    {new Date(advertised?.validTime)?.toString()?.slice(0, 3)}
                                 </th>
                                 <th>
-                                    {advertised.validTime.slice(4, 16)}
+                                    {new Date(advertised?.validTime)?.toString()?.slice(7, 10)} {new Date(advertised?.validTime)?.toString()?.slice(4, 8)} {new Date(advertised?.validTime)?.toString()?.slice(10, 16)}
                                 </th>
                                 <th>
-                                    {advertised.validTime.slice(17, 25)}
+                                    {new Date(advertised?.validTime)?.toString()?.slice(16, 25)}
                                 </th>
-                                <th><button className='btn btn-sm bg-orange-500 hover:bg-red-700 px-4' title='Delete' onClick={() => handleDelete(advertised._id, advertised.validTime)}>X</button></th>
+                                <th><button className={`btn btn-sm ${(new Date(advertised?.validTime) <= new Date()) ? 'bg-red-900' : 'bg-orange-500'} hover:bg-red-700 px-4`} title='Delete' onClick={() => handleDelete(advertised._id, advertised.validTime)}>X</button></th>
                             </tr>)
 
                         }

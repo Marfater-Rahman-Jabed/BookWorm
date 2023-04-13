@@ -16,7 +16,7 @@ const BookCategoryDeyails = ({ book, setModalName }) => {
     return (
 
         <div className="card card-compact bg-slate-300 shadow-xl">
-            <figure><img src={picture} alt="Shoes" className='w-full h-80' /></figure>
+            <figure><img src={picture} alt={name ? name : 'Book'} className='w-full h-80' /></figure>
             <div className="card-body bg-slate-300 rounded-md ">
                 <h2 className="card-title font-bold text-3xl">{name}</h2>
                 <div className='flex justify-between'>

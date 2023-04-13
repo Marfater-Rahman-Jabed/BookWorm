@@ -104,11 +104,15 @@ const Advertise = () => {
 
 
         <div className='bg-slate-400 pb-8'>
-            <div className="carousel w-5/6 h-[450px] mx-auto">
+            <div className="carousel w-5/6 h-[585px] mx-auto">
                 {
-                    Advertise.map((add, i) => <div id={`slideadd${i + 1}`} className="carousel-item relative w-full block mb-8">
-                        <img src={`${add.picture}`} alt="" className="w-full h-1/2 rounded-t-md" />
-                        <div className="card-body bg-orange-500 rounded-b-md mb-0 h-1/2">
+                    Advertise.map((add, i) => <div key={i} id={`slideadd${i + 1}`} className="carousel-item relative w-full block  rounded-b-md">
+                        <div className='bg-orange-700 rounded-full w-12 h-12 pt-3'>
+                            <h1 className='text-center text-white font-bold'>{i + 1} / {Advertise.length}</h1>
+                        </div>
+                        <img src={`${add.picture}`} alt="" className="w-full 
+                        h-[320px] rounded-t-md" />
+                        <div className="card-body bg-orange-500 rounded-b-md mb-0 ">
                             <h2 className="card-title text-blue-900 text-4xl">{add.name.toUpperCase()}</h2>
                             <div className=''>
                                 <p className='font-semibold text-white'>Price: $ {add.OrginalPrice}</p>

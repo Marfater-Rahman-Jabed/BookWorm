@@ -2,6 +2,8 @@ import React from 'react';
 import Advertise from '../Advertise/Advertise';
 import Banner from '../Banner/Banner';
 import BookCategory from '../BookCategory/BookCategory';
+import { BsWhatsapp } from "react-icons/bs";
+import './Home.css'
 
 const Home = () => {
     return (
@@ -13,6 +15,7 @@ const Home = () => {
                 <div className="divider mb-0 rounded-t-md font-bold text-5xl pb-24 text-red-600 bg-slate-400 ">Advertisement</div>
             </div>
             <Advertise></Advertise>
+
         </div>
     );
 };

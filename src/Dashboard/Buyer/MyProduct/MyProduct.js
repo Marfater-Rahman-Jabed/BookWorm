@@ -7,7 +7,7 @@ import { AuthContexts } from '../../../Contexts/AuthContext';
 const MyProduct = () => {
     const { user } = useContext(AuthContexts);
     const [isAdvertise, setIsAdvertise] = useState(false)
-    const { data: myProducts = [] } = useQuery({
+    const { data: myProducts = [], refetch } = useQuery({
         queryKey: ['product'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/myproduct?email=${user?.email}`);
@@ -48,6 +48,20 @@ const MyProduct = () => {
                 console.log(result)
             })
 
+
+
+    }
+    const handleProductDelete = (id) => {
+        fetch(`http://localhost:5000/myproductdelete/${id}`, {
+            method: "DELETE"
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                toast.success('Successfully Deleted')
+                refetch()
+            })
+
     }
     return (
         <div>
@@ -62,6 +76,7 @@ const MyProduct = () => {
                             <th>Price</th>
                             <th>Posted Time</th>
                             <th>Make Advertise</th>
+                            <th>Delete</th>
 
 
                         </tr>
@@ -79,6 +94,10 @@ const MyProduct = () => {
 
                                     <button className='btn btn-success btn-sm' onClick={() => handleAdvertise(product._id, product)}>Advertise</button>
 
+                                </td>
+                                <td >
+                                    <button className='btn btn-sm bg-orange-700 px-6 hover:bg-red-700' title="Delete"
+                                        onClick={() => handleProductDelete(product._id)}>X</button>
                                 </td>
                             </tr>)
                         }

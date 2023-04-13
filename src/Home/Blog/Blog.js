@@ -3,7 +3,7 @@ import React from 'react';
 const Blog = () => {
     return (
         <div>
-            <h1 className='text-5xl text-blue-500 text-center my-4 font-bold'>Blog site </h1>
+            <h1 className='text-5xl text-blue-500 text-center my-4 font-bold'>Here the answer your query</h1>
             <div className='my-10 border-4 p-4 bg-slate-300'>
                 <div tabIndex={0} className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box mb-2">
                     <div className="collapse-title text-xl font-medium text-orange-400">

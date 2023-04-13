@@ -3,7 +3,8 @@ import { toast } from 'react-hot-toast';
 import { AuthContexts } from '../../Contexts/AuthContext';
 
 const ConfirmationModal = ({ modalName, setModalName }) => {
-    const { name: BookName, OrginalPrice, picture } = modalName;
+    // console.log(modalName)
+    const { name: BookName, OrginalPrice, picture, sellerPhone, email: sellerEmail } = modalName;
     const { user } = useContext(AuthContexts);
 
 
@@ -16,11 +17,11 @@ const ConfirmationModal = ({ modalName, setModalName }) => {
         const phone = form.phone.value;
         const location = form.location.value;
 
-        console.log(name, email, price, phone, location);
+        // console.log(name, email, price, phone, location);
         // toast.success('successfully booked')
 
         const booking = {
-            name, email, price, phone, location, BookName, picture, currency: 'BDT'
+            name, email, price, phone, location, BookName, picture, currency: 'BDT', sellerPhone: sellerPhone ? sellerPhone : '01827717200', sellerEmail: sellerEmail
         }
 
 

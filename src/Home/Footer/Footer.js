@@ -19,7 +19,7 @@ const Footer = () => {
                 <div>
                     <span className="footer-title">Company</span>
                     <a className="link link-hover">About us</a>
-                    <a className="link link-hover">Contact</a>
+                    <a className="link link-hover" href="https://wa.me/01827717200" target='_blank'>Contact</a>
                     <a className="link link-hover">Jobs</a>
                     <a className="link link-hover">Press kit</a>
                 </div>
