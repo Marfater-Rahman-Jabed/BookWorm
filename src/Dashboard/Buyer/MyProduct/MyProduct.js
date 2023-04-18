@@ -16,13 +16,19 @@ const MyProduct = () => {
 
         }
     })
-
+    // {
+    console.log(myProducts)
+    // let filterproduct = myProducts.filter(prod => prod.friends.email === user?.email)
+    // console.log(filterproduct)
+    // }
     const handleAdvertise = (id, product) => {
         console.log(product);
         toast.success('Successfully add Advertisement Section. You get 2 days Free advertise.. Then you have to pay for Show Advertise.')
         setIsAdvertise(true)
         const productDetail = {
             productId: product._id,
+            BookId: product.BookId,
+            Qunatity: product.Qunatity,
             picture: product.picture,
             OrginalPrice: product.OrginalPrice,
             name: product.name,
@@ -31,6 +37,7 @@ const MyProduct = () => {
             yearOfUses: product.yearOfUses,
             validTime: new Date(new Date().getTime() + 48 * 60 * 60 * 1000).toGMTString()
         }
+        console.log(productDetail)
 
         fetch(`http://localhost:5000/advertise`, {
             method: 'POST',
@@ -89,10 +96,10 @@ const MyProduct = () => {
                                 <td><img src={product.picture} alt="" className='w-12 h-12' /></td>
                                 <td>{product.name}</td>
                                 <td>{product.OrginalPrice}</td>
-                                <td>{product.postedTime.slice(0, 10)}</td>
+                                <td>{product?.postedTime?.slice(0, 10)}</td>
                                 <td>
 
-                                    <button className='btn btn-success btn-sm' onClick={() => handleAdvertise(product._id, product)}>Advertise</button>
+                                    {product?.Qunatity > 0 ? <button className='btn btn-success btn-sm' onClick={() => handleAdvertise(product._id, product)}>Advertise</button> : <button className='btn bg-red-600 hover:bg-red-700 btn-sm'>UnAvailable</button>}
 
                                 </td>
                                 <td >

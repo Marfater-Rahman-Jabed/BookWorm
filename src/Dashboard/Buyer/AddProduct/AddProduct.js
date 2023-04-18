@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContexts } from '../../../Contexts/AuthContext';
+import { v4 as uuid } from 'uuid';
 
 const AddProduct = () => {
 
@@ -26,7 +27,7 @@ const AddProduct = () => {
         })
             .then(res => res.json())
             .then(image => {
-                // console.log(image.success)
+                console.log(image)
                 if (image.success) {
 
                     const CategoryIds = data.category.split(' ')[0];
@@ -36,6 +37,7 @@ const AddProduct = () => {
                     const productDetails = {
 
                         CategoryId: CategoryIds,
+                        BookId: uuid(),
                         picture: image.data.url,
                         name: data.productName,
                         email: user?.email,
@@ -45,7 +47,8 @@ const AddProduct = () => {
                         postedTime: new Date(),
                         resalePrice: data.resalePrice,
                         OrginalPrice: data.originalPrice,
-                        sellerPhone: data.phoneNumber
+                        sellerPhone: data.phoneNumber,
+                        Qunatity: data.Quantity
 
                     }
                     console.log(productDetails)
@@ -109,6 +112,7 @@ const AddProduct = () => {
                 <input type="text" placeholder="Location" className="input input-bordered input-primary w-full " {...register('location')} required />
                 <input type="tel" placeholder="Selling Price" className="input input-bordered input-primary w-full " {...register('originalPrice')} required />
                 <input type="tel" placeholder="Year of Purchase" className="input input-bordered input-primary w-full " {...register('yearOfUse')} />
+                <input type="number" placeholder="Book Quantity" className="input input-bordered input-primary w-full " {...register('Quantity')} />
 
 
                 <input type="file" placeholder="image" className="input input-bordered input-primary input-sm w-full align-middle " {...register('image')} required />

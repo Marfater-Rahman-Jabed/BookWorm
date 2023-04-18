@@ -103,7 +103,7 @@ const Advertise = () => {
 
 
 
-        <div className='bg-slate-400 pb-8'>
+        <div className='bg-slate-400 pb-8 rounded-b-md'>
             <div className="carousel w-5/6 h-[585px] mx-auto">
                 {
                     Advertise.map((add, i) => <div key={i} id={`slideadd${i + 1}`} className="carousel-item relative w-full block  rounded-b-md">
@@ -119,7 +119,7 @@ const Advertise = () => {
                                 <p className='font-semibold text-white'>Year of Uses : {add.yearOfUses} year</p>
                             </div>
                             <div className="card-actions flex justify-between ">
-                                {user && <label htmlFor="ConfirmModal" className="btn btn-primary  mb-0" onClick={() => { setModalName(add) }}  >Book Now  </label>}
+                                {user && add.Qunatity > 0 ? <label htmlFor="ConfirmModal" className="btn btn-primary  mb-0" onClick={() => { setModalName(add) }}  >Book Now  </label> : <button className="btn bg-red-600 text-white text-2xl btn-disabled  mb-0">Sold Out</button>}
                                 {Admin && <button className="btn btn-primary " onClick={() => handleDelete(add._id, add.validTime)}>Delete</button>}
 
 

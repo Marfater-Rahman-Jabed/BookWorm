@@ -6,9 +6,9 @@ import { TiTick } from 'react-icons/ti';
 import useVerifyed from '../../Hooks/useVerifyed';
 
 const BookCategoryDeyails = ({ book, setModalName }) => {
-    // console.log(book)
+    console.log(book)
     const { user } = useContext(AuthContexts)
-    const { picture, name, price, rating, Author, location, yearOfUses, postedTime, resalePrice, OrginalPrice } = book;
+    const { picture, name, price, rating, Author, location, yearOfUses, postedTime, resalePrice, OrginalPrice, BookId, Qunatity } = book;
     const [verifyed] = useVerifyed(user?.email)
     // console.log(verifyed)
     // here original price is really resaleprice. it is my data update mistake
@@ -38,7 +38,9 @@ const BookCategoryDeyails = ({ book, setModalName }) => {
                 </div>
             </div>
             <div className="card-actions justify-end mt-3 mb-0">
-                <label htmlFor="ConfirmModal" className="btn btn-primary w-full mb-0" onClick={() => setModalName(book)}>Book Now</label>
+                {
+                    Qunatity > 0 ? <label htmlFor="ConfirmModal" className="btn btn-primary w-full mb-0" onClick={() => setModalName(book)}>Book Now</label> : <span className="btn btn-danger w-full mb-0 btn-disabled text-red-600 font-bold text-2xl">Sold Out</span>
+                }
 
             </div>
 

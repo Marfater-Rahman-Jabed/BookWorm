@@ -4,7 +4,7 @@ import { AuthContexts } from '../../Contexts/AuthContext';
 
 const ConfirmationModal = ({ modalName, setModalName }) => {
     // console.log(modalName)
-    const { name: BookName, OrginalPrice, picture, sellerPhone, email: sellerEmail } = modalName;
+    const { name: BookName, OrginalPrice, picture, sellerPhone, email: sellerEmail, BookId } = modalName;
     const { user } = useContext(AuthContexts);
 
 
@@ -21,7 +21,7 @@ const ConfirmationModal = ({ modalName, setModalName }) => {
         // toast.success('successfully booked')
 
         const booking = {
-            name, email, price, phone, location, BookName, picture, currency: 'BDT', sellerPhone: sellerPhone ? sellerPhone : '01827717200', sellerEmail: sellerEmail
+            name, email, price, phone, location, BookName, picture, currency: 'BDT', sellerPhone: sellerPhone ? sellerPhone : '01827717200', sellerEmail: sellerEmail, BookId: BookId ? BookId : ''
         }
 
 
