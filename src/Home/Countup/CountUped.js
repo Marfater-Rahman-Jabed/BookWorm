@@ -4,7 +4,7 @@ import ReactVisibilitySensor from 'react-visibility-sensor';
 
 const CountUped = () => {
     return (
-        <div classname="bg-slate-400">
+        <div className="bg-slate-400">
             <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1  my-4 bg-orange-600 rounded-lg py-4'>
 
                 <div className=' text-white text-center py-16  font-bold text-5xl bg-blue-500 rounded-full mx-16'>

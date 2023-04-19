@@ -48,7 +48,8 @@ const AddProduct = () => {
                         resalePrice: data.resalePrice,
                         OrginalPrice: data.originalPrice,
                         sellerPhone: data.phoneNumber,
-                        Qunatity: data.Quantity
+                        Qunatity: data.Quantity,
+                        initialQuantity: data.Quantity
 
                     }
                     console.log(productDetails)
