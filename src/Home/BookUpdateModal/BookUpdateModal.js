@@ -1,6 +1,6 @@
 import React from 'react';
 import { toast } from 'react-hot-toast';
-import { useQuery } from 'react-query';
+
 
 const BookUpdateModal = ({ quantityModal, setQuantityModal }) => {
 
@@ -31,11 +31,13 @@ const BookUpdateModal = ({ quantityModal, setQuantityModal }) => {
                 console.log(data)
 
                 setQuantityModal(null);
-                toast.success('successfully Added Books .. Please Refresh Your Page for Updating');
 
+                toast.success('Successfully Added Books... ');
 
+                window.location.reload(true)
 
             })
+
     }
 
     return (
@@ -51,7 +53,7 @@ const BookUpdateModal = ({ quantityModal, setQuantityModal }) => {
                         </label>
                         <input name='quantity' type="number" placeholder='How many Book you want to add' className="input input-bordered  w-full bg-slate-300 text-orange-500 font-semibold mb-3" required />
 
-                        <input type="submit" className='btn btn-primary input-bordered mb-0  w-full' value="Submit" />
+                        <input type="submit" className='btn btn-primary input-bordered mb-0  w-full' value="Upload" />
                     </form>
                 </div>
             </div>

@@ -20,6 +20,7 @@ import NotFound404 from "../../NotFound404/NotFound404";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 import SellerAdminRoute from "../SellerAdminRoute/SellerAdminRoute";
+import FailPayment from "../../Dashboard/Payment/FailPayment";
 
 export const router = createBrowserRouter([
     {
@@ -94,7 +95,11 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/success',
                 element: <SuccessPayment></SuccessPayment>
-            }
+            },
+            {
+                path: '/dashboard/payment/fail',
+                element: <FailPayment></FailPayment>
+            },
         ]
     }, {
         path: '*',

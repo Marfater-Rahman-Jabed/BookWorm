@@ -14,6 +14,7 @@ const SuccessPayment = () => {
             <p className='text-center text-red-700 text-3xl'>Check your Email for Transection Id</p><br />
 
             <p className='text-center text-blue-700 font-bold'><Link to='/dashboard' >See Your Order</Link></p>
+            <p className='text-center'><small >Email service is still now free package service. So it is work some specific email address...</small></p>
         </div>
     );
 };
